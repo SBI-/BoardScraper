@@ -1,8 +1,5 @@
 package ch.sbi.scraper.Library.DataTypes;
 
-/**
- * Created by sbi on 11.10.15.
- */
 public final class Board implements ForumItem {
     private final String name;
     private final String url;
