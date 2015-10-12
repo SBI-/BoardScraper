@@ -13,4 +13,8 @@ public final class Board implements ForumItem {
     public String toString() {
         return name + ": " + url;
     }
+
+    public Page getPage(int index) {
+        return null;
+    }
 }

@@ -8,9 +8,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class BoardReader extends Reader {
+public final class Forum extends Reader {
 
-    public BoardReader(String url) throws IOException {
+    public Forum(String url) throws IOException {
         super(url);
     }
 
