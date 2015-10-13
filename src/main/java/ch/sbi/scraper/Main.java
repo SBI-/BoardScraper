@@ -10,7 +10,7 @@ public class Main {
         try {
             Forum forum = new Forum(args[0]);
             Board pot = forum.getBoardById(14);
-            pot.getPageCount();
+            System.out.println(pot.getPageCount());
         } catch (IOException e) {
             e.printStackTrace();
         }
