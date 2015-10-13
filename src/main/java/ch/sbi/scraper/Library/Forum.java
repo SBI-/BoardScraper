@@ -5,30 +5,33 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public final class Forum extends Reader {
+    private HashMap<Integer, Board> boards = new HashMap<Integer, Board>();
 
     public Forum(String url) throws IOException {
         super(url);
-    }
 
-    public List<Board> getBoards() {
         // class nu seems to be what contains a board title
         Elements nu = document.getElementsByClass("nu");
         // nu, however, is used for multiple types of links, so we filter out the ones we don't need
         nu.removeClass("wht");
 
-        List<Board> boards = new ArrayList<Board>();
         for (Element e : nu) {
             // we only want boards, but not threads.
             if (e.attr("href").contains("board")) {
                 Board board = new Board(e.text(), e.attr("abs:href"));
-                boards.add(board);
+                boards.put(board.getId(), board);
             }
         }
+    }
 
-        return boards;
+    public Board getBoardById(Integer id) {
+        return boards.get(id);
+    }
+
+    public Map<Integer, Board> getBoards() {
+        return Collections.unmodifiableMap(boards);
     }
 }
