@@ -1,0 +1,6 @@
+target
+lib
+dependency-reduced-pom.xml
+BoardScraper.iml
+*.swp
+.idea
