@@ -32,9 +32,10 @@ public class Main {
             JAXBElement<Categories> forum = unmarshaller.unmarshal(source, Categories.class);
             for (Category category : forum.getValue().getCategory()) {
                 System.out.println(category.getName());
+                // this check is for private boards
                 if (category.getBoards() != null) {
                     for (Board board : category.getBoards().getBoard()) {
-                        System.out.println("\t" + board.getName());
+                        System.out.println("\t" + board.getName() + ": " + board.getId());
                     }
                 }
             }
