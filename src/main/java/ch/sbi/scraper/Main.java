@@ -1,9 +1,6 @@
 package ch.sbi.scraper;
 
-import ch.sbi.scraper.DataTypes.Board;
-import ch.sbi.scraper.DataTypes.Boards;
-import ch.sbi.scraper.DataTypes.Categories;
-import ch.sbi.scraper.DataTypes.Category;
+import ch.sbi.scraper.DataTypes.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -12,7 +9,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.logging.FileHandler;
@@ -34,6 +30,14 @@ public class Main {
             // using the unmarshal overload with a specific class is necessary if the class doesn't have / isn't a root
             // element.
             JAXBElement<Categories> forum = unmarshaller.unmarshal(source, Categories.class);
+            for (Category category : forum.getValue().getCategory()) {
+                System.out.println(category.getName());
+                if (category.getBoards() != null) {
+                    for (Board board : category.getBoards().getBoard()) {
+                        System.out.println("\t" + board.getName());
+                    }
+                }
+            }
         } catch (IOException e) {
             logger.severe("Url failed to open. Reason: " + e);
         } catch (JAXBException e) {
