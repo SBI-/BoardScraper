@@ -10,19 +10,27 @@ import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.util.logging.FileHandler;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Main {
 
+
     private static Logger logger = Logger.getLogger(Main.class.getName());
+
+    static {
+        try {
+            System.setProperty("java.util.logging.config.file", "default.logging.properties");
+            LogManager manager = LogManager.getLogManager();
+            manager.readConfiguration();
+        } catch (IOException e) {
+            System.out.println("Setting up log configuration failed.");
+        }
+    }
 
     public static void main(String[] args) {
         try {
-            setupLogging();
-            URL url = new URL(args[0] + "xml/boards.php");
+            URL url = new URL(args[0] + "xml/boards.phpabc");
 
             String packageName = "ch.sbi.scraper.DataTypes";
             JAXBContext context = JAXBContext.newInstance(packageName);
@@ -47,11 +55,5 @@ public class Main {
             logger.info("JAXB Error: " + e);
             e.printStackTrace();
         }
-    }
-
-    public static void setupLogging() throws IOException {
-        System.setProperty("java.util.logging.config.file", "default.logging.properties");
-        LogManager manager = LogManager.getLogManager();
-        manager.readConfiguration();
     }
 }
