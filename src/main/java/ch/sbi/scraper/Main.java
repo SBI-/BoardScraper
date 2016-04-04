@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.logging.FileHandler;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 public class Main {
@@ -20,6 +21,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            setupLogging();
             URL url = new URL(args[0] + "xml/boards.php");
 
             String packageName = "ch.sbi.scraper.DataTypes";
@@ -48,8 +50,8 @@ public class Main {
     }
 
     public static void setupLogging() throws IOException {
-        LocalDateTime date = LocalDateTime.now();
-        FileHandler logFile = new FileHandler("logs/" + date + ".log");
-        logger.addHandler(logFile);
+        System.setProperty("java.util.logging.config.file", "default.logging.properties");
+        LogManager manager = LogManager.getLogManager();
+        manager.readConfiguration();
     }
 }
