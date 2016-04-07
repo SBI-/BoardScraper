@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes;
+package ch.sbi.scraper.DataTypes.Marshalling;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;

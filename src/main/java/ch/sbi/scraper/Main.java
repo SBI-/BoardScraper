@@ -1,6 +1,8 @@
 package ch.sbi.scraper;
 
-import ch.sbi.scraper.DataTypes.*;
+import ch.sbi.scraper.DataTypes.Marshalling.Board;
+import ch.sbi.scraper.DataTypes.Marshalling.Categories;
+import ch.sbi.scraper.DataTypes.Marshalling.Category;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;

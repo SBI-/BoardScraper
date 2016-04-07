@@ -6,9 +6,11 @@
 //
 
 
-package ch.sbi.scraper.DataTypes;
+package ch.sbi.scraper.DataTypes.Marshalling;
 
 import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -28,8 +30,17 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;all>
- *         &lt;element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="subtitle" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="number-of-threads">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
  *         &lt;element name="number-of-replies">
  *           &lt;complexType>
  *             &lt;complexContent>
@@ -39,18 +50,8 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="number-of-hits">
- *           &lt;complexType>
- *             &lt;complexContent>
- *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *                 &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *               &lt;/restriction>
- *             &lt;/complexContent>
- *           &lt;/complexType>
- *         &lt;/element>
- *         &lt;element ref="{}flags"/>
- *         &lt;element ref="{}in-board"/>
- *         &lt;element name="firstpost" minOccurs="0">
+ *         &lt;element ref="{}in-category"/>
+ *         &lt;element name="lastpost" minOccurs="0">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
@@ -61,7 +62,19 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element ref="{}posts"/>
+ *         &lt;element name="moderators" minOccurs="0">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;sequence>
+ *                   &lt;element ref="{}user" maxOccurs="unbounded" minOccurs="0"/>
+ *                 &lt;/sequence>
+ *                 &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
+ *         &lt;/element>
+ *         &lt;element ref="{}threads" minOccurs="0"/>
  *       &lt;/all>
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
  *     &lt;/restriction>
@@ -75,74 +88,96 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
 
 })
-@XmlRootElement(name = "thread")
-public class Thread {
+@XmlRootElement(name = "board")
+public class Board {
 
     @XmlElement(required = true)
-    protected String title;
+    protected String name;
     @XmlElement(required = true)
-    protected String subtitle;
+    protected String description;
+    @XmlElement(name = "number-of-threads", required = true)
+    protected Board.NumberOfThreads numberOfThreads;
     @XmlElement(name = "number-of-replies", required = true)
-    protected Thread.NumberOfReplies numberOfReplies;
-    @XmlElement(name = "number-of-hits", required = true)
-    protected Thread.NumberOfHits numberOfHits;
-    @XmlElement(required = true)
-    protected Flags flags;
-    @XmlElement(name = "in-board", required = true)
-    protected InBoard inBoard;
-    protected Thread.Firstpost firstpost;
-    @XmlElement(required = true)
-    protected Posts posts;
+    protected Board.NumberOfReplies numberOfReplies;
+    @XmlElement(name = "in-category", required = true)
+    protected InCategory inCategory;
+    protected Board.Lastpost lastpost;
+    protected Board.Moderators moderators;
+    protected Threads threads;
     @XmlAttribute(name = "id", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger id;
 
     /**
-     * Gets the value of the title property.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
     /**
-     * Sets the value of the title property.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setTitle(String value) {
-        this.title = value;
+    public void setName(String value) {
+        this.name = value;
     }
 
     /**
-     * Gets the value of the subtitle property.
+     * Gets the value of the description property.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getSubtitle() {
-        return subtitle;
+    public String getDescription() {
+        return description;
     }
 
     /**
-     * Sets the value of the subtitle property.
+     * Sets the value of the description property.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setSubtitle(String value) {
-        this.subtitle = value;
+    public void setDescription(String value) {
+        this.description = value;
+    }
+
+    /**
+     * Gets the value of the numberOfThreads property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Board.NumberOfThreads }
+     *     
+     */
+    public Board.NumberOfThreads getNumberOfThreads() {
+        return numberOfThreads;
+    }
+
+    /**
+     * Sets the value of the numberOfThreads property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Board.NumberOfThreads }
+     *     
+     */
+    public void setNumberOfThreads(Board.NumberOfThreads value) {
+        this.numberOfThreads = value;
     }
 
     /**
@@ -150,10 +185,10 @@ public class Thread {
      * 
      * @return
      *     possible object is
-     *     {@link Thread.NumberOfReplies }
+     *     {@link Board.NumberOfReplies }
      *     
      */
-    public Thread.NumberOfReplies getNumberOfReplies() {
+    public Board.NumberOfReplies getNumberOfReplies() {
         return numberOfReplies;
     }
 
@@ -162,131 +197,107 @@ public class Thread {
      * 
      * @param value
      *     allowed object is
-     *     {@link Thread.NumberOfReplies }
+     *     {@link Board.NumberOfReplies }
      *     
      */
-    public void setNumberOfReplies(Thread.NumberOfReplies value) {
+    public void setNumberOfReplies(Board.NumberOfReplies value) {
         this.numberOfReplies = value;
     }
 
     /**
-     * Gets the value of the numberOfHits property.
+     * Gets the value of the inCategory property.
      * 
      * @return
      *     possible object is
-     *     {@link Thread.NumberOfHits }
+     *     {@link InCategory }
      *     
      */
-    public Thread.NumberOfHits getNumberOfHits() {
-        return numberOfHits;
+    public InCategory getInCategory() {
+        return inCategory;
     }
 
     /**
-     * Sets the value of the numberOfHits property.
+     * Sets the value of the inCategory property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Thread.NumberOfHits }
+     *     {@link InCategory }
      *     
      */
-    public void setNumberOfHits(Thread.NumberOfHits value) {
-        this.numberOfHits = value;
+    public void setInCategory(InCategory value) {
+        this.inCategory = value;
     }
 
     /**
-     * Gets the value of the flags property.
+     * Gets the value of the lastpost property.
      * 
      * @return
      *     possible object is
-     *     {@link Flags }
+     *     {@link Board.Lastpost }
      *     
      */
-    public Flags getFlags() {
-        return flags;
+    public Board.Lastpost getLastpost() {
+        return lastpost;
     }
 
     /**
-     * Sets the value of the flags property.
+     * Sets the value of the lastpost property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Flags }
+     *     {@link Board.Lastpost }
      *     
      */
-    public void setFlags(Flags value) {
-        this.flags = value;
+    public void setLastpost(Board.Lastpost value) {
+        this.lastpost = value;
     }
 
     /**
-     * Gets the value of the inBoard property.
+     * Gets the value of the moderators property.
      * 
      * @return
      *     possible object is
-     *     {@link InBoard }
+     *     {@link Board.Moderators }
      *     
      */
-    public InBoard getInBoard() {
-        return inBoard;
+    public Board.Moderators getModerators() {
+        return moderators;
     }
 
     /**
-     * Sets the value of the inBoard property.
+     * Sets the value of the moderators property.
      * 
      * @param value
      *     allowed object is
-     *     {@link InBoard }
+     *     {@link Board.Moderators }
      *     
      */
-    public void setInBoard(InBoard value) {
-        this.inBoard = value;
+    public void setModerators(Board.Moderators value) {
+        this.moderators = value;
     }
 
     /**
-     * Gets the value of the firstpost property.
+     * Gets the value of the threads property.
      * 
      * @return
      *     possible object is
-     *     {@link Thread.Firstpost }
+     *     {@link Threads }
      *     
      */
-    public Thread.Firstpost getFirstpost() {
-        return firstpost;
+    public Threads getThreads() {
+        return threads;
     }
 
     /**
-     * Sets the value of the firstpost property.
+     * Sets the value of the threads property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Thread.Firstpost }
+     *     {@link Threads }
      *     
      */
-    public void setFirstpost(Thread.Firstpost value) {
-        this.firstpost = value;
-    }
-
-    /**
-     * Gets the value of the posts property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Posts }
-     *     
-     */
-    public Posts getPosts() {
-        return posts;
-    }
-
-    /**
-     * Sets the value of the posts property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Posts }
-     *     
-     */
-    public void setPosts(Posts value) {
-        this.posts = value;
+    public void setThreads(Threads value) {
+        this.threads = value;
     }
 
     /**
@@ -337,7 +348,7 @@ public class Thread {
     @XmlType(name = "", propOrder = {
 
     })
-    public static class Firstpost {
+    public static class Lastpost {
 
         @XmlElement(required = true)
         protected Post post;
@@ -378,6 +389,93 @@ public class Thread {
      * &lt;complexType>
      *   &lt;complexContent>
      *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;sequence>
+     *         &lt;element ref="{}user" maxOccurs="unbounded" minOccurs="0"/>
+     *       &lt;/sequence>
+     *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     * 
+     * 
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "", propOrder = {
+        "user"
+    })
+    public static class Moderators {
+
+        protected List<User> user;
+        @XmlAttribute(name = "count")
+        @XmlSchemaType(name = "nonNegativeInteger")
+        protected BigInteger count;
+
+        /**
+         * Gets the value of the user property.
+         * 
+         * <p>
+         * This accessor method returns a reference to the live list,
+         * not a snapshot. Therefore any modification you make to the
+         * returned list will be present inside the JAXB object.
+         * This is why there is not a <CODE>set</CODE> method for the user property.
+         * 
+         * <p>
+         * For example, to add a new item, do as follows:
+         * <pre>
+         *    getUser().add(newItem);
+         * </pre>
+         * 
+         * 
+         * <p>
+         * Objects of the following type(s) are allowed in the list
+         * {@link User }
+         * 
+         * 
+         */
+        public List<User> getUser() {
+            if (user == null) {
+                user = new ArrayList<User>();
+            }
+            return this.user;
+        }
+
+        /**
+         * Gets the value of the count property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link BigInteger }
+         *     
+         */
+        public BigInteger getCount() {
+            return count;
+        }
+
+        /**
+         * Sets the value of the count property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link BigInteger }
+         *     
+         */
+        public void setCount(BigInteger value) {
+            this.count = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Java class for anonymous complex type.
+     * 
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     * 
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
      *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
      *     &lt;/restriction>
      *   &lt;/complexContent>
@@ -388,7 +486,7 @@ public class Thread {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    public static class NumberOfHits {
+    public static class NumberOfReplies {
 
         @XmlAttribute(name = "value", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")
@@ -440,7 +538,7 @@ public class Thread {
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
-    public static class NumberOfReplies {
+    public static class NumberOfThreads {
 
         @XmlAttribute(name = "value", required = true)
         @XmlSchemaType(name = "nonNegativeInteger")

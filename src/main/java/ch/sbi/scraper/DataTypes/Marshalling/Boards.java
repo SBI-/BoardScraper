@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes;
+package ch.sbi.scraper.DataTypes.Marshalling;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}category" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{}board" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *     &lt;/restriction>
@@ -41,43 +41,43 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "category"
+    "board"
 })
-@XmlRootElement(name = "categories")
-public class Categories {
+@XmlRootElement(name = "boards")
+public class Boards {
 
-    protected List<Category> category;
+    protected List<Board> board;
     @XmlAttribute(name = "count")
     @XmlSchemaType(name = "nonNegativeInteger")
     protected BigInteger count;
 
     /**
-     * Gets the value of the category property.
+     * Gets the value of the board property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the category property.
+     * This is why there is not a <CODE>set</CODE> method for the board property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getCategory().add(newItem);
+     *    getBoard().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Category }
+     * {@link Board }
      * 
      * 
      */
-    public List<Category> getCategory() {
-        if (category == null) {
-            category = new ArrayList<Category>();
+    public List<Board> getBoard() {
+        if (board == null) {
+            board = new ArrayList<Board>();
         }
-        return this.category;
+        return this.board;
     }
 
     /**

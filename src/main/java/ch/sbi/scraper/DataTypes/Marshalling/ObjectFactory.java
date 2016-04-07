@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes;
+package ch.sbi.scraper.DataTypes.Marshalling;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -245,11 +245,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ch.sbi.scraper.DataTypes.Boards }
+     * Create an instance of {@link Boards }
      * 
      */
-    public ch.sbi.scraper.DataTypes.Boards createBoards() {
-        return new ch.sbi.scraper.DataTypes.Boards();
+    public Boards createBoards() {
+        return new Boards();
     }
 
     /**

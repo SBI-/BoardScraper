@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes;
+package ch.sbi.scraper.DataTypes.Marshalling;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -29,12 +29,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}thread" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{}post" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *       &lt;attGroup ref="{}paged"/>
- *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
- *       &lt;attribute name="with-stickies" type="{http://www.w3.org/2001/XMLSchema}boolean" />
- *       &lt;attribute name="with-globals" type="{http://www.w3.org/2001/XMLSchema}boolean" />
+ *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -44,19 +42,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "thread"
+    "post"
 })
-@XmlRootElement(name = "threads")
-public class Threads {
+@XmlRootElement(name = "posts")
+public class Posts {
 
-    protected List<Thread> thread;
+    protected List<Post> post;
     @XmlAttribute(name = "count")
-    @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger count;
-    @XmlAttribute(name = "with-stickies")
-    protected Boolean withStickies;
-    @XmlAttribute(name = "with-globals")
-    protected Boolean withGlobals;
+    @XmlSchemaType(name = "anySimpleType")
+    protected String count;
     @XmlAttribute(name = "page")
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger page;
@@ -65,32 +59,32 @@ public class Threads {
     protected BigInteger offset;
 
     /**
-     * Gets the value of the thread property.
+     * Gets the value of the post property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the thread property.
+     * This is why there is not a <CODE>set</CODE> method for the post property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getThread().add(newItem);
+     *    getPost().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Thread }
+     * {@link Post }
      * 
      * 
      */
-    public List<Thread> getThread() {
-        if (thread == null) {
-            thread = new ArrayList<Thread>();
+    public List<Post> getPost() {
+        if (post == null) {
+            post = new ArrayList<Post>();
         }
-        return this.thread;
+        return this.post;
     }
 
     /**
@@ -98,10 +92,10 @@ public class Threads {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getCount() {
+    public String getCount() {
         return count;
     }
 
@@ -110,59 +104,11 @@ public class Threads {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public void setCount(BigInteger value) {
+    public void setCount(String value) {
         this.count = value;
-    }
-
-    /**
-     * Gets the value of the withStickies property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isWithStickies() {
-        return withStickies;
-    }
-
-    /**
-     * Sets the value of the withStickies property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setWithStickies(Boolean value) {
-        this.withStickies = value;
-    }
-
-    /**
-     * Gets the value of the withGlobals property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Boolean }
-     *     
-     */
-    public Boolean isWithGlobals() {
-        return withGlobals;
-    }
-
-    /**
-     * Sets the value of the withGlobals property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Boolean }
-     *     
-     */
-    public void setWithGlobals(Boolean value) {
-        this.withGlobals = value;
     }
 
     /**
