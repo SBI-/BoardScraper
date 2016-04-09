@@ -32,7 +32,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            URL url = new URL(args[0] + "xml/boards.phpabc");
+            URL url = new URL(args[0] + "xml/boards.php");
 
             String packageName = "ch.sbi.scraper.DataTypes";
             JAXBContext context = JAXBContext.newInstance(packageName);
