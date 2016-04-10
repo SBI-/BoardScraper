@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes.Marshalling;
+package ch.sbi.scraper.datatypes.marshalling;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlValue;
  *   &lt;simpleContent>
  *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
+ *       &lt;attribute name="group-id" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
  * &lt;/complexType>
@@ -39,14 +40,17 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "in-board")
-public class InBoard {
+@XmlRootElement(name = "user")
+public class User {
 
     @XmlValue
     protected String value;
     @XmlAttribute(name = "id", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger id;
+    @XmlAttribute(name = "group-id")
+    @XmlSchemaType(name = "nonNegativeInteger")
+    protected BigInteger groupId;
 
     /**
      * Gets the value of the value property.
@@ -94,6 +98,30 @@ public class InBoard {
      */
     public void setId(BigInteger value) {
         this.id = value;
+    }
+
+    /**
+     * Gets the value of the groupId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getGroupId() {
+        return groupId;
+    }
+
+    /**
+     * Sets the value of the groupId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setGroupId(BigInteger value) {
+        this.groupId = value;
     }
 
 }

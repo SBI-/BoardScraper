@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes.Marshalling;
+package ch.sbi.scraper.datatypes.marshalling;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -45,10 +45,10 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Thread }
+     * Create an instance of {@link java.lang.Thread }
      * 
      */
-    public Thread createThread() {
+    public java.lang.Thread createThread() {
         return new Thread();
     }
 
@@ -181,18 +181,18 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Thread.NumberOfReplies }
+     * Create an instance of {@link java.lang.Thread.NumberOfReplies }
      * 
      */
-    public Thread.NumberOfReplies createThreadNumberOfReplies() {
+    public java.lang.Thread.NumberOfReplies createThreadNumberOfReplies() {
         return new Thread.NumberOfReplies();
     }
 
     /**
-     * Create an instance of {@link Thread.NumberOfHits }
+     * Create an instance of {@link java.lang.Thread.NumberOfHits }
      * 
      */
-    public Thread.NumberOfHits createThreadNumberOfHits() {
+    public java.lang.Thread.NumberOfHits createThreadNumberOfHits() {
         return new Thread.NumberOfHits();
     }
 
@@ -205,10 +205,10 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Thread.Firstpost }
+     * Create an instance of {@link java.lang.Thread.Firstpost }
      * 
      */
-    public Thread.Firstpost createThreadFirstpost() {
+    public java.lang.Thread.Firstpost createThreadFirstpost() {
         return new Thread.Firstpost();
     }
 

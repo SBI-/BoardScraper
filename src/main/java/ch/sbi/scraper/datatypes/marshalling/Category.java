@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes.Marshalling;
+package ch.sbi.scraper.datatypes.marshalling;
 
 import java.math.BigInteger;
 import java.util.ArrayList;

@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes.Marshalling;
+package ch.sbi.scraper.datatypes.marshalling;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -29,9 +29,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{}board" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element ref="{}post" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
- *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
+ *       &lt;attGroup ref="{}paged"/>
+ *       &lt;attribute name="count" type="{http://www.w3.org/2001/XMLSchema}anySimpleType" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -41,43 +42,49 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "board"
+    "post"
 })
-@XmlRootElement(name = "boards")
-public class Boards {
+@XmlRootElement(name = "posts")
+public class Posts {
 
-    protected List<Board> board;
+    protected List<Post> post;
     @XmlAttribute(name = "count")
+    @XmlSchemaType(name = "anySimpleType")
+    protected String count;
+    @XmlAttribute(name = "page")
+    @XmlSchemaType(name = "positiveInteger")
+    protected BigInteger page;
+    @XmlAttribute(name = "offset", required = true)
     @XmlSchemaType(name = "nonNegativeInteger")
-    protected BigInteger count;
+    protected BigInteger offset;
 
     /**
-     * Gets the value of the board property.
+     * Gets the value of the post property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the board property.
+     * This is why there is not a <CODE>set</CODE> method for the post property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getBoard().add(newItem);
+     *    getPost().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Board }
+     * {@link Post }
      * 
      * 
      */
-    public List<Board> getBoard() {
-        if (board == null) {
-            board = new ArrayList<Board>();
+    public List<Post> getPost() {
+        if (post == null) {
+            post = new ArrayList<Post>();
         }
-        return this.board;
+        return this.post;
     }
 
     /**
@@ -85,10 +92,10 @@ public class Boards {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link String }
      *     
      */
-    public BigInteger getCount() {
+    public String getCount() {
         return count;
     }
 
@@ -97,11 +104,59 @@ public class Boards {
      * 
      * @param value
      *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCount(String value) {
+        this.count = value;
+    }
+
+    /**
+     * Gets the value of the page property.
+     * 
+     * @return
+     *     possible object is
      *     {@link BigInteger }
      *     
      */
-    public void setCount(BigInteger value) {
-        this.count = value;
+    public BigInteger getPage() {
+        return page;
+    }
+
+    /**
+     * Sets the value of the page property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setPage(BigInteger value) {
+        this.page = value;
+    }
+
+    /**
+     * Gets the value of the offset property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link BigInteger }
+     *     
+     */
+    public BigInteger getOffset() {
+        return offset;
+    }
+
+    /**
+     * Sets the value of the offset property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link BigInteger }
+     *     
+     */
+    public void setOffset(BigInteger value) {
+        this.offset = value;
     }
 
 }

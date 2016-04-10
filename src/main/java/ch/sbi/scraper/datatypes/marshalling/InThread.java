@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.DataTypes.Marshalling;
+package ch.sbi.scraper.datatypes.marshalling;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlValue;
  * <pre>
  * &lt;complexType>
  *   &lt;simpleContent>
- *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>anyURI">
+ *     &lt;extension base="&lt;http://www.w3.org/2001/XMLSchema>string">
  *       &lt;attribute name="id" use="required" type="{http://www.w3.org/2001/XMLSchema}positiveInteger" />
  *     &lt;/extension>
  *   &lt;/simpleContent>
@@ -39,11 +39,10 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "icon")
-public class Icon {
+@XmlRootElement(name = "in-thread")
+public class InThread {
 
     @XmlValue
-    @XmlSchemaType(name = "anyURI")
     protected String value;
     @XmlAttribute(name = "id", required = true)
     @XmlSchemaType(name = "positiveInteger")

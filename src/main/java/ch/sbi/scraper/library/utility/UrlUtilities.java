@@ -1,4 +1,4 @@
-package ch.sbi.scraper.Library.Utilities;
+package ch.sbi.scraper.library.utility;
 
 public final class UrlUtilities {
     /**
