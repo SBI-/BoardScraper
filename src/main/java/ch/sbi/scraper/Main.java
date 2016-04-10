@@ -2,15 +2,9 @@ package ch.sbi.scraper;
 
 import ch.sbi.scraper.controller.ForumController;
 import ch.sbi.scraper.datatypes.marshalling.Board;
-import ch.sbi.scraper.datatypes.marshalling.Categories;
 import ch.sbi.scraper.datatypes.marshalling.Category;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.LogManager;
