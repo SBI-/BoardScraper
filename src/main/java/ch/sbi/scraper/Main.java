@@ -1,5 +1,6 @@
 package ch.sbi.scraper;
 
+import ch.sbi.scraper.controller.ForumController;
 import ch.sbi.scraper.datatypes.marshalling.Board;
 import ch.sbi.scraper.datatypes.marshalling.Categories;
 import ch.sbi.scraper.datatypes.marshalling.Category;
@@ -34,15 +35,9 @@ public class Main {
         try {
             URL url = new URL(args[0] + "xml/boards.php");
 
-            String packageName = "ch.sbi.scraper.datatypes.marshalling";
-            JAXBContext context = JAXBContext.newInstance(packageName);
-            Unmarshaller unmarshaller = context.createUnmarshaller();
+            ForumController forumController = ForumController.initializeAccessible(url);
 
-            Source source = new StreamSource(url.openStream());
-            // using the unmarshal overload with a specific class is necessary if the class doesn't have / isn't a root
-            // element.
-            JAXBElement<Categories> forum = unmarshaller.unmarshal(source, Categories.class);
-            for (Category category : forum.getValue().getCategory()) {
+            for (Category category : forumController.getForum().getValue().getCategory()) {
                 System.out.println(category.getName());
                 // this check is for private boards
                 if (category.getBoards() != null) {
