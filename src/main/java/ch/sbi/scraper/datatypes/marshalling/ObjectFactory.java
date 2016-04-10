@@ -48,7 +48,7 @@ public class ObjectFactory {
      * Create an instance of {@link java.lang.Thread }
      * 
      */
-    public java.lang.Thread createThread() {
+    public Thread createThread() {
         return new Thread();
     }
 
@@ -181,18 +181,18 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link java.lang.Thread.NumberOfReplies }
+     * Create an instance of {@link Thread.NumberOfReplies }
      * 
      */
-    public java.lang.Thread.NumberOfReplies createThreadNumberOfReplies() {
+    public Thread.NumberOfReplies createThreadNumberOfReplies() {
         return new Thread.NumberOfReplies();
     }
 
     /**
-     * Create an instance of {@link java.lang.Thread.NumberOfHits }
+     * Create an instance of {@link Thread.NumberOfHits }
      * 
      */
-    public java.lang.Thread.NumberOfHits createThreadNumberOfHits() {
+    public Thread.NumberOfHits createThreadNumberOfHits() {
         return new Thread.NumberOfHits();
     }
 
@@ -205,10 +205,10 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link java.lang.Thread.Firstpost }
+     * Create an instance of {@link Thread.Firstpost }
      * 
      */
-    public java.lang.Thread.Firstpost createThreadFirstpost() {
+    public Thread.Firstpost createThreadFirstpost() {
         return new Thread.Firstpost();
     }
 

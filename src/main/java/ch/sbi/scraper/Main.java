@@ -34,7 +34,7 @@ public class Main {
         try {
             URL url = new URL(args[0] + "xml/boards.php");
 
-            String packageName = "ch.sbi.scraper.DataTypes";
+            String packageName = "ch.sbi.scraper.datatypes.marshalling";
             JAXBContext context = JAXBContext.newInstance(packageName);
             Unmarshaller unmarshaller = context.createUnmarshaller();
 
