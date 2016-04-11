@@ -1,6 +1,7 @@
 package ch.sbi.scraper.controller;
 
 import ch.sbi.scraper.datatypes.marshalling.Categories;
+import ch.sbi.scraper.factory.MarshallerFactory;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
@@ -19,13 +20,10 @@ public class ForumController {
     private JAXBElement<Categories> forum;
 
     public static ForumController initialize(URL url) throws JAXBException, IOException {
-        String packageName = Categories.class.getPackage().getName();
-        JAXBContext context = JAXBContext.newInstance(packageName);
-        Unmarshaller unmarshaller = context.createUnmarshaller();
-
-        Source source = new StreamSource(url.openStream());
+        Unmarshaller unmarshaller = new MarshallerFactory(Categories.class).getUnmarshaller();
         // using the unmarshal overload with a specific class is necessary if the class doesn't have / isn't a root
         // element.
+        Source source = new StreamSource(url.openStream());
         JAXBElement<Categories> forum = unmarshaller.unmarshal(source, Categories.class);
         return new ForumController(forum);
     }
