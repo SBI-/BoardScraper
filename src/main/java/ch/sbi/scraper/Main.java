@@ -30,7 +30,6 @@ public class Main {
     public static void main(String[] args) {
         try {
             SourceBuilder sourceBuilder = new UrlSourceBuilder(args[0]);
-
             ForumController forumController = ForumController.initialize(sourceBuilder);
 
             for (Category category : forumController.getCategories()) {
@@ -38,7 +37,9 @@ public class Main {
                 // this check is for private boards
                 if (category.getBoards() != null) {
                     for (Board board : category.getBoards().getBoard()) {
-                        System.out.println("\t" + board.getName() + ": " + board.getId());
+                        String output = String.format("\t %s, Id: %s, Threadcount: %d",
+                                board.getName(),board.getId(), board.getNumberOfThreads().getValue());
+                        System.out.println(output);
                     }
                 }
             }

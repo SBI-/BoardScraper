@@ -8,10 +8,7 @@ import ch.sbi.scraper.library.utility.SourceBuilder;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.transform.Source;
-import javax.xml.transform.stream.StreamSource;
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
 
 /**
