@@ -29,7 +29,7 @@ public class Main {
         try {
             URL url = new URL(args[0] + "xml/boards.php");
 
-            ForumController forumController = ForumController.initializeAccessible(url);
+            ForumController forumController = ForumController.initialize(url);
 
             for (Category category : forumController.getForum().getValue().getCategory()) {
                 System.out.println(category.getName());

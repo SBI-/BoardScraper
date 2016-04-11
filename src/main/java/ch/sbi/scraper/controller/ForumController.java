@@ -18,8 +18,8 @@ public class ForumController {
 
     private JAXBElement<Categories> forum;
 
-    public static ForumController initializeAccessible(URL url) throws JAXBException, IOException {
-        String packageName = "ch.sbi.scraper.datatypes.marshalling";
+    public static ForumController initialize(URL url) throws JAXBException, IOException {
+        String packageName = Categories.class.getPackage().getName();
         JAXBContext context = JAXBContext.newInstance(packageName);
         Unmarshaller unmarshaller = context.createUnmarshaller();
 
