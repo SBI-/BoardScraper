@@ -3,6 +3,8 @@ package ch.sbi.scraper;
 import ch.sbi.scraper.controller.ForumController;
 import ch.sbi.scraper.datatypes.marshalling.Board;
 import ch.sbi.scraper.datatypes.marshalling.Category;
+import ch.sbi.scraper.library.utility.SourceBuilder;
+import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -27,9 +29,9 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            URL url = new URL(args[0] + "xml/boards.php");
+            SourceBuilder sourceBuilder = new UrlSourceBuilder(args[0]);
 
-            ForumController forumController = ForumController.initialize(url);
+            ForumController forumController = ForumController.initialize(sourceBuilder);
 
             for (Category category : forumController.getCategories()) {
                 System.out.println(category.getName());
