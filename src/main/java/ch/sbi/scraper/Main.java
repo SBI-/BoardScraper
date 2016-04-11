@@ -31,7 +31,7 @@ public class Main {
 
             ForumController forumController = ForumController.initialize(url);
 
-            for (Category category : forumController.getForum().getValue().getCategory()) {
+            for (Category category : forumController.getCategories()) {
                 System.out.println(category.getName());
                 // this check is for private boards
                 if (category.getBoards() != null) {
