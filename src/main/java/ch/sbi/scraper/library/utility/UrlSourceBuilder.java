@@ -19,5 +19,11 @@ public class UrlSourceBuilder implements SourceBuilder {
     public Source getCategoriesSource() throws IOException {
         return new StreamSource(categories);
     }
+
+    public Source getBoardSource(int id) {
+        String address = String.format("%s%s?BID=%d", base, "xml/board.php?", id);
+        System.out.println(address);
+        return new StreamSource(address);
+    }
     
 }
