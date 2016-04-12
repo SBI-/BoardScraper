@@ -8,7 +8,6 @@ import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.net.URL;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 

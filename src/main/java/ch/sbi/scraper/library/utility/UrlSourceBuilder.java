@@ -10,15 +10,15 @@ import java.net.URL;
  * Created by sbi on 11.04.16.
  */
 public class UrlSourceBuilder implements SourceBuilder {
-    private String base;
+    private final String boards;
+    private final String base;
 
     public UrlSourceBuilder(String base) {
         this.base = base;
+        this.boards = String.format("%s%s", base, "xml/boards.php");
     }
 
     public Source getBoardSource() throws IOException {
-        String address = String.format("%s%s", base, "xml/boards.php");
-        //URL url = new URL(address);
-        return new StreamSource(address);
+        return new StreamSource(boards);
     }
 }
