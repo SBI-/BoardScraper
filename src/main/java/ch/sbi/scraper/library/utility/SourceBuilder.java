@@ -7,5 +7,5 @@ import java.io.IOException;
  * Created by sbi on 11.04.16.
  */
 public interface SourceBuilder {
-    Source getBoardSource() throws IOException;
+    Source getCategoriesSource() throws IOException;
 }

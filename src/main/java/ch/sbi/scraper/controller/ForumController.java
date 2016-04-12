@@ -16,23 +16,14 @@ import java.util.List;
  */
 public final class ForumController {
 
-    private JAXBElement<Categories> forum;
+    private JAXBElement<Categories> categories;
 
-    public static ForumController initialize(SourceBuilder sourceBuilder) throws JAXBException, IOException {
+    public ForumController(SourceBuilder sourceBuilder) throws JAXBException, IOException {
         Unmarshaller unmarshaller = new MarshallerFactory(Categories.class).getUnmarshaller();
-        // TODO: Find out if there is a way to use IoC here and hide the marshaller from the controllers in order to
-        // TODO: make sure that a source is only used once.
-        // using the unmarshal overload with a specific class is necessary if the class doesn't have / isn't a root
-        // element.
-        JAXBElement<Categories> forum = unmarshaller.unmarshal(sourceBuilder.getBoardSource(), Categories.class);
-        return new ForumController(forum);
-    }
-
-    private ForumController(JAXBElement<Categories> forum) {
-        this.forum = forum;
+        categories = unmarshaller.unmarshal(sourceBuilder.getCategoriesSource(), Categories.class);
     }
 
     public List<Category> getCategories() {
-        return forum.getValue().getCategory();
+        return categories.getValue().getCategory();
     }
 }

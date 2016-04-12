@@ -29,7 +29,7 @@ public class Main {
     public static void main(String[] args) {
         try {
             SourceBuilder sourceBuilder = new UrlSourceBuilder(args[0]);
-            ForumController forumController = ForumController.initialize(sourceBuilder);
+            ForumController forumController = new ForumController(sourceBuilder);
 
             for (Category category : forumController.getCategories()) {
                 System.out.println(category.getName());
