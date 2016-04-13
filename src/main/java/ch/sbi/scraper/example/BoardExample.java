@@ -18,6 +18,7 @@ public class BoardExample {
 
         Board board = forumController.getBoard(14);
         printInformation(board);
+        forumController.getBoard(3457);
     }
 
     private static void printInformation(Board board) {

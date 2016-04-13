@@ -33,8 +33,21 @@ public final class ForumController {
     public Board getBoard(int id) throws JAXBException {
         Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
 
-        return unmarshaller
-                .unmarshal(sourceBuilder.getBoardSource(id), Board.class)
-                .getValue();
+        // TODO; Instead of getting the board this way, I could build the stream up to flatmap in the constructor and
+        // TODO: check if that id exists in that way. This also paves the way for creating a board controller that then
+        // TODO: just doens't make that check before trying to unmarshall a source. Or there might be a nicer stream.
+        boolean notFound = getCategories()
+                .stream()
+                .filter(a -> a.getBoards() != null)
+                .flatMap(a -> a.getBoards().getBoard().stream())
+                .noneMatch(b -> b.getId().intValue() == id);
+
+        if (notFound) {
+            throw new IllegalArgumentException("Invalid item id.");
+        } else {
+            return unmarshaller
+                    .unmarshal(sourceBuilder.getBoardSource(id), Board.class)
+                    .getValue();
+        }
     }
 }
