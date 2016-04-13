@@ -10,10 +10,12 @@ import java.io.IOException;
 public class UrlSourceBuilder implements SourceBuilder {
     private final String categories;
     private final String base;
+    private final String board;
 
     public UrlSourceBuilder(String base) {
         this.base = base;
         this.categories = String.format("%s%s", base, "xml/boards.php");
+        this.board = String.format("%s%s?BID=", base, "xml/board.php");
     }
 
     public Source getCategoriesSource() throws IOException {
@@ -21,8 +23,7 @@ public class UrlSourceBuilder implements SourceBuilder {
     }
 
     public Source getBoardSource(int id) {
-        String address = String.format("%s%s?BID=%d", base, "xml/board.php?", id);
-        System.out.println(address);
+        String address = String.format("%s%d", board, id);
         return new StreamSource(address);
     }
     

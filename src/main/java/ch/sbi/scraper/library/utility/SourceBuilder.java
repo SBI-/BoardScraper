@@ -8,4 +8,5 @@ import java.io.IOException;
  */
 public interface SourceBuilder {
     Source getCategoriesSource() throws IOException;
+    Source getBoardSource(int id);
 }
