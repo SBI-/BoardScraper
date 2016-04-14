@@ -18,8 +18,7 @@ public class BoardExample {
         ForumController forumController = new ForumController(sourceBuilder);
 
         Optional<Board> maybe = forumController.getBoard(14);
-        Board board = maybe.get();
-        printInformation(board);
+        maybe.ifPresent(b -> printInformation(b));
         Optional<Board> maybeNot = forumController.getBoard(3457);
         System.out.println(maybeNot.isPresent());
     }
