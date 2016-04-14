@@ -16,13 +16,13 @@ import java.util.Optional;
 /**
  * Created by sbi on 10.04.16.
  */
-public final class ForumController {
+public final class ForumMapper {
 
     private final SourceBuilder sourceBuilder;
     private JAXBElement<Categories> categories;
 
     // TODO: Contemplate using lazy loading instead of unmarshalling in the constructor.
-    public ForumController(SourceBuilder sourceBuilder) throws JAXBException, IOException {
+    public ForumMapper(SourceBuilder sourceBuilder) throws JAXBException, IOException {
         this.sourceBuilder = sourceBuilder;
         Unmarshaller unmarshaller = new MarshallerFactory(Categories.class).getUnmarshaller();
         categories = unmarshaller.unmarshal(sourceBuilder.getCategoriesSource(), Categories.class);

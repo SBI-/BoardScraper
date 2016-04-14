@@ -1,6 +1,6 @@
 package ch.sbi.scraper.example;
 
-import ch.sbi.scraper.controller.ForumController;
+import ch.sbi.scraper.controller.ForumMapper;
 import ch.sbi.scraper.datatypes.marshalling.Board;
 import ch.sbi.scraper.datatypes.marshalling.Category;
 import ch.sbi.scraper.library.utility.SourceBuilder;
@@ -15,9 +15,9 @@ import java.io.IOException;
 public class CategoriesExample {
     public static void printCategories(String baseUrl) throws JAXBException, IOException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
-        ForumController forumController = new ForumController(sourceBuilder);
+        ForumMapper forumMapper = new ForumMapper(sourceBuilder);
 
-        for (Category category : forumController.getCategories()) {
+        for (Category category : forumMapper.getCategories()) {
             System.out.println(category.getName());
             // this check is for private boards
             if (category.getBoards() != null) {

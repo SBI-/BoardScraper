@@ -1,6 +1,6 @@
 package ch.sbi.scraper.example;
 
-import ch.sbi.scraper.controller.ForumController;
+import ch.sbi.scraper.controller.ForumMapper;
 import ch.sbi.scraper.datatypes.marshalling.Board;
 import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.library.utility.UrlSourceBuilder;
@@ -15,11 +15,11 @@ import java.util.Optional;
 public class BoardExample {
     public static void printBoard(String baseUrl) throws JAXBException, IOException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
-        ForumController forumController = new ForumController(sourceBuilder);
+        ForumMapper forumMapper = new ForumMapper(sourceBuilder);
 
-        Optional<Board> maybe = forumController.getBoard(14);
+        Optional<Board> maybe = forumMapper.getBoard(14);
         maybe.ifPresent(b -> printInformation(b));
-        Optional<Board> maybeNot = forumController.getBoard(3457);
+        Optional<Board> maybeNot = forumMapper.getBoard(3457);
         System.out.println(maybeNot.isPresent());
     }
 
