@@ -7,6 +7,7 @@ import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * Created by sbi on 12.04.16.
@@ -16,9 +17,11 @@ public class BoardExample {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         ForumController forumController = new ForumController(sourceBuilder);
 
-        Board board = forumController.getBoard(14);
+        Optional<Board> maybe = forumController.getBoard(14);
+        Board board = maybe.get();
         printInformation(board);
-        forumController.getBoard(3457);
+        Optional<Board> maybeNot = forumController.getBoard(3457);
+        System.out.println(maybeNot.isPresent());
     }
 
     private static void printInformation(Board board) {
