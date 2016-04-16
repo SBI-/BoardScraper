@@ -35,11 +35,11 @@ public final class ForumMapper {
     public Optional<Board> getBoard(int id) throws JAXBException {
         return getCategories()
                 .stream()
-                .filter(a -> a.getBoards() != null)
-                .flatMap(a -> a.getBoards().getBoard().stream())
-                .filter(b -> b.getId().intValue() == id)
-                .map(b -> unmarshal(b.getId().intValue()))
-                .findFirst();
+                .filter(c -> c.getBoards() != null)
+                .flatMap(c -> c.getBoards().getBoard().stream())
+                    .filter(b -> b.getId().intValue() == id)
+                    .map(b -> unmarshal(b.getId().intValue()))
+                    .findFirst();
     }
 
     private Board unmarshal(int id) {
