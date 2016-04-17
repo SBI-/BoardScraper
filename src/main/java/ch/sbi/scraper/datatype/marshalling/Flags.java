@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.datatypes.marshalling;
+package ch.sbi.scraper.datatype.marshalling;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

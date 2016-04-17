@@ -6,7 +6,7 @@
 //
 
 
-package ch.sbi.scraper.datatypes.marshalling;
+package ch.sbi.scraper.datatype.marshalling;
 
 import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -39,8 +39,8 @@ import javax.xml.bind.annotation.XmlValue;
 @XmlType(name = "", propOrder = {
     "value"
 })
-@XmlRootElement(name = "in-board")
-public class InBoard {
+@XmlRootElement(name = "in-thread")
+public class InThread {
 
     @XmlValue
     protected String value;

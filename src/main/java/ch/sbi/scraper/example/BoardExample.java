@@ -1,7 +1,7 @@
 package ch.sbi.scraper.example;
 
-import ch.sbi.scraper.controller.ForumMapper;
-import ch.sbi.scraper.datatypes.marshalling.Board;
+import ch.sbi.scraper.mapper.ForumMapper;
+import ch.sbi.scraper.datatype.marshalling.Board;
 import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 

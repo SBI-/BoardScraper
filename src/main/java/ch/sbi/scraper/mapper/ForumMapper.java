@@ -1,8 +1,8 @@
-package ch.sbi.scraper.controller;
+package ch.sbi.scraper.mapper;
 
-import ch.sbi.scraper.datatypes.marshalling.Board;
-import ch.sbi.scraper.datatypes.marshalling.Categories;
-import ch.sbi.scraper.datatypes.marshalling.Category;
+import ch.sbi.scraper.datatype.marshalling.Board;
+import ch.sbi.scraper.datatype.marshalling.Categories;
+import ch.sbi.scraper.datatype.marshalling.Category;
 import ch.sbi.scraper.factory.MarshallerFactory;
 import ch.sbi.scraper.library.utility.SourceBuilder;
 
