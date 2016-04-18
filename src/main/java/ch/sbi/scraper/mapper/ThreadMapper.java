@@ -20,7 +20,11 @@ public class ThreadMapper {
     }
 
     public Thread getThread(int id) throws JAXBException {
-        Source threadSource = sourceBuilder.getThreadSource(id);
+        return getThread(id, 1);
+    }
+
+    public Thread getThread(int id, int page) throws JAXBException {
+        Source threadSource = sourceBuilder.getThreadSource(id, page);
         Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
         return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
     }

@@ -19,9 +19,17 @@ public class ThreadExample {
 
     }
 
+    public static void printPage(String baseUrl) throws JAXBException {
+        UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
+        ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
+        Thread thread = threadMapper.getThread(214387, 96);
+        print(thread);
+    }
+
     private static void print(Thread thread) {
         System.out.println("Thread Id: " + thread.getId());
         System.out.println("In Board: " + thread.getInBoard().getId());
+        System.out.println("Page: " + thread.getPosts().getPage());
         System.out.println("Closed: " + thread.getFlags().getIsClosed().isValue());
     }
 }

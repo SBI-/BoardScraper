@@ -31,9 +31,7 @@ public class BoardMapper {
      * @throws JAXBException If xml is invalid
      */
     public Board getBoard(long id) throws JAXBException {
-        Source boardSource = sourceBuilder.getBoardSource(id);
-        Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
-        return unmarshaller.unmarshal(boardSource, Board.class).getValue();
+        return getBoard(id, 1);
     }
 
     public Board getBoard(long id, long page) throws JAXBException {
