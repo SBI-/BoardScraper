@@ -9,7 +9,6 @@ import ch.sbi.scraper.library.utility.SourceBuilder;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,7 +65,6 @@ public final class CategoryMapper {
                     .filter(b -> b.getId().intValue() == id)
                     .map(b -> unmarshal(b.getId().intValue()))
                     .findFirst();
-
     }
 
     private Board unmarshal(int id) {

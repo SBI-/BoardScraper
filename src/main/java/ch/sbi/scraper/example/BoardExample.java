@@ -44,6 +44,18 @@ public class BoardExample {
         printInformation(board);
     }
 
+    public static void pageStream(String baseUrl) throws JAXBException {
+        SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
+        BoardMapper boardMapper = new BoardMapper(sourceBuilder);
+
+        long count = boardMapper
+                .getPages(16)
+                .parallel()
+                .count();
+
+        System.out.println(count);
+    }
+
     private static void printInformation(Board board) {
         String boardInfo = String.format("%s", board.getName());
         String threadInfo = String.format("Page %d / %d",

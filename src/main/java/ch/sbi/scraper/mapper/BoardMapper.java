@@ -7,6 +7,8 @@ import ch.sbi.scraper.library.utility.SourceBuilder;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Class that maps a category xml to its runtime type.
@@ -38,5 +40,43 @@ public class BoardMapper {
         Source boardSource = sourceBuilder.getBoardSource(id, page);
         Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
         return unmarshaller.unmarshal(boardSource, Board.class).getValue();
+    }
+
+    /**
+     * Forms a stream for iterating over the pages of a board.
+     *
+     * The maximum page count is only an estimation, as the thread count includes threads that aren't visible anymore,
+     * so the maximum count calculated is definately an upper bound, but possibly not the absolutely correct value.
+     *
+     * @param id Id of the board over which to iterate.
+     * @return A stream of board objects.
+     * @throws JAXBException If xml is malformed or of the wrong type.
+     */
+    public Stream<Board> getPages(int id) throws JAXBException {
+        return IntStream
+                .range(1, estimateBound(id) + 1)
+                .mapToObj(i -> sourceBuilder.getBoardSource(id, i))
+                .map(s -> unmarshall(s))
+                .filter(b -> b.getThreads().getCount().intValue() > 0);
+    }
+
+    private int estimateBound(int id) throws JAXBException {
+        Board board = getBoard(id);
+        int step = board.getThreads().getCount().intValue();
+        int count = board.getNumberOfThreads().getValue().intValue();
+
+        return (count / step) + 1;
+    }
+
+    private Board unmarshall(Source source) {
+        try {
+            Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
+            return unmarshaller
+                    .unmarshal(source, Board.class)
+                    .getValue();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

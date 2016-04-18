@@ -29,7 +29,7 @@ public class UrlSourceBuilder implements SourceBuilder {
 
     public Source getBoardSource(int id, int page) {
         String address = String.format("%s%d&page=%d", board, id, page);
-        return new StreamSource(address);
+       return new StreamSource(address);
     }
     
 }

@@ -24,7 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            BoardExample.printBoardPage(args[0]);
+            BoardExample.pageStream(args[0]);
         } catch (JAXBException e) {
             logger.info("JAXB Error: " + e);
             e.printStackTrace();
