@@ -29,8 +29,10 @@ public class ThreadExample {
     public static void countPages(String baseUrl) throws JAXBException {
         UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
+
         long count = threadMapper
                 .getPages(214387)
+                .parallel()
                 .count();
 
         System.out.println("Page count: " + count);

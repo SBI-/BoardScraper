@@ -13,9 +13,11 @@ import java.io.IOException;
  * Created by sbi on 12.04.16.
  */
 public class CategoriesExample {
-    public static void printCategories(String baseUrl) throws JAXBException, IOException {
+    public static void printCategories(String baseUrl) throws JAXBException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         CategoryMapper categoryMapper = new CategoryMapper(sourceBuilder);
+
+        int sum = 0;
 
         for (Category category : categoryMapper.getCategories()) {
             System.out.println(category.getName());
@@ -24,9 +26,12 @@ public class CategoriesExample {
                 for (Board board : category.getBoards().getBoard()) {
                     String output = String.format("\t %s, Id: %s, Threadcount: %d",
                             board.getName(),board.getId(), board.getNumberOfThreads().getValue());
+                    sum += board.getNumberOfThreads().getValue().intValue();
                     System.out.println(output);
                 }
             }
         }
+
+        System.out.println(sum);
     }
 }
