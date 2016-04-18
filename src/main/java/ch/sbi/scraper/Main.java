@@ -24,10 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            BoardExample.printBoardCategory(args[0]);
-            BoardExample.printBoard(args[0]);
-        } catch (IOException e) {
-            logger.severe("Url failed to open. Reason: " + e);
+            BoardExample.printBoardPage(args[0]);
         } catch (JAXBException e) {
             logger.info("JAXB Error: " + e);
             e.printStackTrace();

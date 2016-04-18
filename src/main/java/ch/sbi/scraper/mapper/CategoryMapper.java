@@ -34,9 +34,8 @@ public final class CategoryMapper {
      *
      * @return List of all categories
      * @throws JAXBException
-     * @throws IOException
      */
-    public List<Category> getCategories() throws JAXBException, IOException {
+    public List<Category> getCategories() throws JAXBException {
         if (categories != null) {
             return categories.getValue().getCategory();
         }
@@ -56,9 +55,8 @@ public final class CategoryMapper {
      * @param id Id of the board to return
      * @return Will contain a board if it exists inside a category
      * @throws JAXBException If xml is malformed or of the wrong type
-     * @throws IOException If xml url cannot be reached
      */
-    public Optional<Board> getBoard(int id) throws JAXBException, IOException {
+    public Optional<Board> getBoard(int id) throws JAXBException {
         return getCategories()
                 .stream()
                 .filter(c -> c.getBoards() != null)

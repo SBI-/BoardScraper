@@ -33,4 +33,10 @@ public class BoardMapper {
         Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
         return unmarshaller.unmarshal(boardSource, Board.class).getValue();
     }
+
+    public Board getBoard(int id, int page) throws JAXBException {
+        Source boardSource = sourceBuilder.getBoardSource(id, page);
+        Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
+        return unmarshaller.unmarshal(boardSource, Board.class).getValue();
+    }
 }

@@ -36,6 +36,14 @@ public class BoardExample {
         }
     }
 
+    public static void printBoardPage(String baseUrl) throws JAXBException {
+        SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
+        BoardMapper boardMapper = new BoardMapper(sourceBuilder);
+
+        Board board = boardMapper.getBoard(14, 4);
+        printInformation(board);
+    }
+
     private static void printInformation(Board board) {
         String boardInfo = String.format("%s", board.getName());
         String threadInfo = String.format("Page %d / %d",
