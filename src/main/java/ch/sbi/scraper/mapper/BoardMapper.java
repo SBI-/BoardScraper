@@ -30,13 +30,13 @@ public class BoardMapper {
      * @return Unmarshalled board with the corresponding id
      * @throws JAXBException If xml is invalid
      */
-    public Board getBoard(int id) throws JAXBException {
+    public Board getBoard(long id) throws JAXBException {
         Source boardSource = sourceBuilder.getBoardSource(id);
         Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
         return unmarshaller.unmarshal(boardSource, Board.class).getValue();
     }
 
-    public Board getBoard(int id, int page) throws JAXBException {
+    public Board getBoard(long id, long page) throws JAXBException {
         Source boardSource = sourceBuilder.getBoardSource(id, page);
         Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
         return unmarshaller.unmarshal(boardSource, Board.class).getValue();
@@ -52,7 +52,7 @@ public class BoardMapper {
      * @return A stream of board objects.
      * @throws JAXBException If xml is malformed or of the wrong type.
      */
-    public Stream<Board> getPages(int id) throws JAXBException {
+    public Stream<Board> getPages(long id) throws JAXBException {
         return IntStream
                 .range(1, estimateBound(id) + 1)
                 .mapToObj(i -> sourceBuilder.getBoardSource(id, i))
@@ -60,7 +60,7 @@ public class BoardMapper {
                 .filter(b -> b.getThreads().getCount().intValue() > 0);
     }
 
-    private int estimateBound(int id) throws JAXBException {
+    private int estimateBound(long id) throws JAXBException {
         Board board = getBoard(id);
         int step = board.getThreads().getCount().intValue();
         int count = board.getNumberOfThreads().getValue().intValue();

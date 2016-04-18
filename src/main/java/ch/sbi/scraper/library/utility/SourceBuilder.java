@@ -8,6 +8,8 @@ import java.io.IOException;
  */
 public interface SourceBuilder {
     Source getCategoriesSource();
-    Source getBoardSource(int id);
-    Source getBoardSource(int id, int page);
+    Source getBoardSource(long id);
+    Source getBoardSource(long id, long page);
+    Source getThreadSource(long id);
+    Source getThreadSource(long id, long page);
 }
