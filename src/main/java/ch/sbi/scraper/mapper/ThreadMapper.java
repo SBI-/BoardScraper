@@ -1,7 +1,13 @@
 package ch.sbi.scraper.mapper;
 
 import ch.sbi.scraper.datatype.marshalling.*;
+import ch.sbi.scraper.datatype.marshalling.Thread;
+import ch.sbi.scraper.factory.MarshallerFactory;
 import ch.sbi.scraper.library.utility.SourceBuilder;
+
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.transform.Source;
 
 /**
  * Created by sbi on 18.04.16.
@@ -13,8 +19,9 @@ public class ThreadMapper {
         this.sourceBuilder = sourceBuilder;
     }
 
-    public ch.sbi.scraper.datatype.marshalling.Thread getThread(int id) {
-        sourceBuilder.getThreadSource(214387);
-        return null;
+    public Thread getThread(int id) throws JAXBException {
+        Source threadSource = sourceBuilder.getThreadSource(id);
+        Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
+        return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
     }
 }
