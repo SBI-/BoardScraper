@@ -14,25 +14,50 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Created by sbi on 10.04.16.
+ * Class that maps a category xml to its runtime type.
+ *
+ * Also allows unmarshalling of boards directly through it's parent category.
  */
-public final class ForumMapper {
+public final class CategoryMapper {
 
     private final SourceBuilder sourceBuilder;
     private JAXBElement<Categories> categories;
 
-    // TODO: Contemplate using lazy loading instead of unmarshalling in the constructor.
-    public ForumMapper(SourceBuilder sourceBuilder) throws JAXBException, IOException {
+    public CategoryMapper(SourceBuilder sourceBuilder) {
         this.sourceBuilder = sourceBuilder;
-        Unmarshaller unmarshaller = new MarshallerFactory(Categories.class).getUnmarshaller();
-        categories = unmarshaller.unmarshal(sourceBuilder.getCategoriesSource(), Categories.class);
     }
 
-    public List<Category> getCategories() {
+    /**
+     * Returns all the categories in a forum.
+     *
+     * Utilizes lazy loading, categories are fetched and unmarshalled on the first call to this function.
+     *
+     * @return List of all categories
+     * @throws JAXBException
+     * @throws IOException
+     */
+    public List<Category> getCategories() throws JAXBException, IOException {
+        if (categories != null) {
+            return categories.getValue().getCategory();
+        }
+
+        Unmarshaller unmarshaller = new MarshallerFactory(Categories.class).getUnmarshaller();
+        categories = unmarshaller.unmarshal(sourceBuilder.getCategoriesSource(), Categories.class);
+
         return categories.getValue().getCategory();
     }
 
-    public Optional<Board> getBoard(int id) throws JAXBException {
+    /**
+     * Returns a board that has a corresponding category.
+     *
+     * This function will only return a valid board if it is assigned to a category.
+     *
+     * @param id Id of the board to return
+     * @return Will contain a board if it exists inside a category
+     * @throws JAXBException If xml is malformed or of the wrong type
+     * @throws IOException If xml url cannot be reached
+     */
+    public Optional<Board> getBoard(int id) throws JAXBException, IOException {
         return getCategories()
                 .stream()
                 .filter(c -> c.getBoards() != null)
@@ -40,6 +65,7 @@ public final class ForumMapper {
                     .filter(b -> b.getId().intValue() == id)
                     .map(b -> unmarshal(b.getId().intValue()))
                     .findFirst();
+
     }
 
     private Board unmarshal(int id) {
