@@ -50,7 +50,8 @@ public final class CategoryMapper {
     /**
      * Returns a board that has a corresponding category.
      *
-     * This function will only return a valid board if it is assigned to a category.
+     * This function will only return a valid board if it is assigned to a category. Will likely be deprecated in the
+     * future, as this functionality will be part of a different mapper class.
      *
      * @param id Id of the board to return
      * @return Will contain a board if it exists inside a category

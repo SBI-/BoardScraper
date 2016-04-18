@@ -1,5 +1,6 @@
 package ch.sbi.scraper.example;
 
+import ch.sbi.scraper.mapper.BoardMapper;
 import ch.sbi.scraper.mapper.CategoryMapper;
 import ch.sbi.scraper.datatype.marshalling.Board;
 import ch.sbi.scraper.library.utility.SourceBuilder;
@@ -13,7 +14,7 @@ import java.util.Optional;
  * Created by sbi on 12.04.16.
  */
 public class BoardExample {
-    public static void printBoard(String baseUrl) throws JAXBException, IOException {
+    public static void printBoardCategory(String baseUrl) throws JAXBException, IOException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         CategoryMapper categoryMapper = new CategoryMapper(sourceBuilder);
 
@@ -21,6 +22,16 @@ public class BoardExample {
         maybe.ifPresent(b -> printInformation(b));
         Optional<Board> maybeNot = categoryMapper.getBoard(3457);
         System.out.println(maybeNot.isPresent());
+    }
+
+    public static void printBoard(String baseUrl) throws JAXBException {
+        SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
+        BoardMapper boardMapper = new BoardMapper(sourceBuilder);
+
+        Board board = boardMapper.getBoard(14);
+        printInformation(board);
+        Board noBoard = boardMapper.getBoard(1337);
+        printInformation(noBoard);
     }
 
     private static void printInformation(Board board) {

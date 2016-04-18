@@ -1,7 +1,6 @@
 package ch.sbi.scraper;
 
 import ch.sbi.scraper.example.BoardExample;
-import ch.sbi.scraper.example.CategoriesExample;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -25,6 +24,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            BoardExample.printBoardCategory(args[0]);
             BoardExample.printBoard(args[0]);
         } catch (IOException e) {
             logger.severe("Url failed to open. Reason: " + e);
