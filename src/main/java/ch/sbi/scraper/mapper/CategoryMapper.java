@@ -30,7 +30,9 @@ public final class CategoryMapper {
     /**
      * Returns all the categories in a forum.
      *
-     * Utilizes lazy loading, categories are fetched and unmarshalled on the first call to this function.
+     * Utilizes lazy loading, categories are fetched and unmarshalled on the first call to this function. This is safe
+     * for our usage because categories are unlikely to change for the runtime of the program. If you can't be sure
+     * about this behaviour, create a new instance of CategoryMapper.
      *
      * @return List of all categories
      * @throws JAXBException
