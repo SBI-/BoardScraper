@@ -8,6 +8,8 @@ import ch.sbi.scraper.library.utility.SourceBuilder;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Created by sbi on 18.04.16.
@@ -19,13 +21,41 @@ public class ThreadMapper {
         this.sourceBuilder = sourceBuilder;
     }
 
-    public Thread getThread(int id) throws JAXBException {
+    public Thread getThread(long id) throws JAXBException {
         return getThread(id, 1);
     }
 
-    public Thread getThread(int id, int page) throws JAXBException {
+    public Thread getThread(long id, int page) throws JAXBException {
         Source threadSource = sourceBuilder.getThreadSource(id, page);
         Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
         return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
+    }
+
+    public Stream<Thread> getPages(long id) throws JAXBException {
+        return IntStream
+                .range(1, estimateBound(id))
+                .mapToObj(i -> sourceBuilder.getThreadSource(id, i))
+                .map(s -> unmarshall(s))
+                .filter(t -> Integer.valueOf(t.getPosts().getCount()) > 0);
+    }
+
+    private int estimateBound(long id) throws JAXBException {
+        Thread thread = getThread(id);
+        int step = Integer.valueOf(thread.getPosts().getCount());
+        int count = thread.getNumberOfReplies().getValue().intValue();
+
+        return (count / step) + 2;
+    }
+
+    private Thread unmarshall(Source source) {
+        try {
+            Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
+            return unmarshaller
+                    .unmarshal(source, Thread.class)
+                    .getValue();
+        } catch (JAXBException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }

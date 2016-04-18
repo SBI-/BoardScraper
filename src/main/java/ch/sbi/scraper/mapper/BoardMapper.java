@@ -52,7 +52,7 @@ public class BoardMapper {
      */
     public Stream<Board> getPages(long id) throws JAXBException {
         return IntStream
-                .range(1, estimateBound(id) + 1)
+                .range(1, estimateBound(id))
                 .mapToObj(i -> sourceBuilder.getBoardSource(id, i))
                 .map(s -> unmarshall(s))
                 .filter(b -> b.getThreads().getCount().intValue() > 0);
@@ -63,7 +63,7 @@ public class BoardMapper {
         int step = board.getThreads().getCount().intValue();
         int count = board.getNumberOfThreads().getValue().intValue();
 
-        return (count / step) + 1;
+        return (count / step) + 2;
     }
 
     private Board unmarshall(Source source) {

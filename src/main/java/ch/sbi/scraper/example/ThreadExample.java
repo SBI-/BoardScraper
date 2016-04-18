@@ -26,10 +26,21 @@ public class ThreadExample {
         print(thread);
     }
 
+    public static void countPages(String baseUrl) throws JAXBException {
+        UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
+        ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
+        long count = threadMapper
+                .getPages(214387)
+                .count();
+
+        System.out.println("Page count: " + count);
+    }
+
     private static void print(Thread thread) {
         System.out.println("Thread Id: " + thread.getId());
         System.out.println("In Board: " + thread.getInBoard().getId());
         System.out.println("Page: " + thread.getPosts().getPage());
+        System.out.println("Post on page: " + thread.getPosts().getCount());
         System.out.println("Closed: " + thread.getFlags().getIsClosed().isValue());
     }
 }

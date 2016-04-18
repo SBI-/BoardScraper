@@ -27,6 +27,7 @@ public class Main {
         try {
             ThreadExample.printInfo(args[0]);
             ThreadExample.printPage(args[0]);
+            ThreadExample.countPages(args[0]);
         } catch (JAXBException e) {
             logger.info("JAXB Error: " + e);
             e.printStackTrace();
