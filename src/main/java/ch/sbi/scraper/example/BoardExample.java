@@ -31,7 +31,9 @@ public class BoardExample {
         Board board = boardMapper.getBoard(14);
         printInformation(board);
         Board noBoard = boardMapper.getBoard(1337);
-        printInformation(noBoard);
+        if (noBoard.getId() != null) {
+            printInformation(noBoard);
+        }
     }
 
     private static void printInformation(Board board) {

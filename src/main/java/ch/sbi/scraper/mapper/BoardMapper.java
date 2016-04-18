@@ -9,7 +9,7 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.Source;
 
 /**
- * Created by sbi on 18.04.16.
+ * Class that maps a category xml to its runtime type.
  */
 public class BoardMapper {
     private final SourceBuilder sourceBuilder;
