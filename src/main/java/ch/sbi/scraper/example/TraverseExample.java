@@ -7,6 +7,7 @@ import ch.sbi.scraper.mapper.BoardMapper;
 import ch.sbi.scraper.mapper.ThreadMapper;
 
 import javax.xml.bind.JAXBException;
+import java.io.PrintStream;
 import java.util.stream.Stream;
 
 /**
@@ -22,7 +23,7 @@ public class TraverseExample {
                 .getPages(14)
                 .limit(3)
                 .flatMap(p -> p.getThreads().getThread().stream())
-                .forEach(t -> System.out.println(t.getTitle() + " marshalled: " + (t.getPosts() != null)));
+                .forEach(t -> printThread(t));
 
         boardMapper
                 .getPages(14)
@@ -30,6 +31,20 @@ public class TraverseExample {
                 .flatMap(p -> p.getThreads().getThread().stream())
                 .map(t -> threadMapper.getThread(t.getId().intValue()))
                 .flatMap(t -> t.getPosts().getPost().stream())
-                .forEach(p -> System.out.printf("%s %s: %s\n", p.getInThread().getId(), p.getUser().getValue(), p.getMessage().getContent()));
+                .forEach(p -> printPost(p));
+
+        boardMapper
+                .getPages(122)
+                .parallel()
+                .flatMap(p -> p.getThreads().getThread().stream())
+                .forEach(t -> printThread(t));
+    }
+
+    private static void printThread(ch.sbi.scraper.datatype.marshalling.Thread t) {
+        System.out.println(t.getTitle() + " marshalled: " + (t.getPosts() != null));
+    }
+
+    private static void printPost(Post p) {
+        System.out.printf("%s %s: %s\n", p.getInThread().getId(), p.getUser().getValue(), p.getMessage().getContent());
     }
 }
