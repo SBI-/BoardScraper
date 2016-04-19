@@ -1,6 +1,7 @@
 package ch.sbi.scraper;
 
 import ch.sbi.scraper.example.ThreadExample;
+import ch.sbi.scraper.example.TraverseExample;
 
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -24,9 +25,10 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            ThreadExample.printInfo(args[0]);
-            ThreadExample.printPage(args[0]);
-            ThreadExample.countPages(args[0]);
+//            ThreadExample.printInfo(args[0]);
+//            ThreadExample.printPage(args[0]);
+//            ThreadExample.countPages(args[0]);
+            TraverseExample.traversePages(args[0]);
         } catch (JAXBException e) {
             logger.info("JAXB Error: " + e);
             e.printStackTrace();
