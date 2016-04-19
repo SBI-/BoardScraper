@@ -27,7 +27,7 @@ public class TraverseExample {
                 .getPages(14)
                 .limit(1)
                 /*
-                This works, but will take forever on a large board
+                This works, but will take forever on a large board, because limit is ignored.
                 .parallel()
                 */
                 .flatMap(p -> p.getThreads().getThread().stream())
@@ -48,6 +48,9 @@ public class TraverseExample {
     }
 
     private static void printPost(Post p) {
-        System.out.printf("%s %s: %s\n", p.getInThread().getId(), p.getUser().getValue(), p.getMessage().getContent());
+        System.out.printf("%s %s: %s\n",
+                p.getInThread().getId(),
+                p.getUser().getValue(),
+                p.getMessage().getContent());
     }
 }

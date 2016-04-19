@@ -1,5 +1,6 @@
 package ch.sbi.scraper.example;
 
+import ch.sbi.scraper.datatype.marshalling.Post;
 import ch.sbi.scraper.datatype.marshalling.Thread;
 import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.library.utility.UrlSourceBuilder;
@@ -36,6 +37,22 @@ public class ThreadExample {
                 .count();
 
         System.out.println("Page count: " + count);
+    }
+
+    public static void printThread(String baseUrl) throws JAXBException {
+        UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
+        ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
+
+        threadMapper
+                .getPages(214387)
+                .flatMap(t -> t.getPosts().getPost().stream())
+                .forEach(ThreadExample::printPost);
+    }
+
+    private static void printPost(Post post) {
+        System.out.printf("Author: %s%n Content: %s%n --- %n",
+                post.getUser().getValue(),
+                post.getMessage().getContent());
     }
 
     private static void print(Thread thread) {
