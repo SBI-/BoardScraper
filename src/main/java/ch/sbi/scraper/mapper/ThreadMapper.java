@@ -26,18 +26,18 @@ public class ThreadMapper {
     }
 
     public Thread getThread(long id, int page) {
-        Source threadSource = sourceBuilder.getThreadSource(id, page);
-        Unmarshaller unmarshaller = null;
         try {
-            unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
+            Source threadSource = sourceBuilder.getThreadSource(id, page);
+            Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
             return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
         } catch (JAXBException e) {
             // object creation failed, return a dummy object
+            // TODO: This should likely be what all mappers return.
             return new Thread();
         }
     }
 
-    public Stream<Thread> getPages(long id) throws JAXBException {
+    public Stream<Thread> getPages(long id) {
         return IntStream
                 .range(1, estimateBound(id))
                 .mapToObj(i -> sourceBuilder.getThreadSource(id, i))
@@ -45,7 +45,7 @@ public class ThreadMapper {
                 .filter(t -> Integer.valueOf(t.getPosts().getCount()) > 0);
     }
 
-    private int estimateBound(long id) throws JAXBException {
+    private int estimateBound(long id) {
         Thread thread = getThread(id);
         int step = Integer.valueOf(thread.getPosts().getCount());
         int count = thread.getNumberOfReplies().getValue().intValue();
