@@ -15,7 +15,7 @@ public class Main {
 
     static {
         try {
-            System.setProperty("java.util.logging.config.file", "default.logging.properties");
+            System.setProperty("src/main/resources/java.util.logging.config.file", "default.logging.properties");
             LogManager manager = LogManager.getLogManager();
             manager.readConfiguration();
         } catch (IOException e) {
@@ -26,10 +26,10 @@ public class Main {
     public static void main(String[] args) {
         try {
 //            ThreadExample.printInfo(args[0]);
-//            ThreadExample.printPage(args[0]);
+            ThreadExample.printPage(args[0]);
 //            ThreadExample.countPages(args[0]);
 //            TraverseExample.traversePages(args[0]);
-            ThreadExample.printThread(args[0]);
+//            ThreadExample.printThread(args[0]);
         } catch (JAXBException e) {
             logger.info("JAXB Error: " + e);
             e.printStackTrace();
