@@ -21,14 +21,20 @@ public class ThreadMapper {
         this.sourceBuilder = sourceBuilder;
     }
 
-    public Thread getThread(long id) throws JAXBException {
+    public Thread getThread(long id) {
         return getThread(id, 1);
     }
 
-    public Thread getThread(long id, int page) throws JAXBException {
+    public Thread getThread(long id, int page) {
         Source threadSource = sourceBuilder.getThreadSource(id, page);
-        Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
-        return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
+        Unmarshaller unmarshaller = null;
+        try {
+            unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
+            return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
+        } catch (JAXBException e) {
+            // object creation failed, return a dummy object
+            return new Thread();
+        }
     }
 
     public Stream<Thread> getPages(long id) throws JAXBException {

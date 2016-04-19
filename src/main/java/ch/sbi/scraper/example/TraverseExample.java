@@ -1,11 +1,13 @@
 package ch.sbi.scraper.example;
 
+import ch.sbi.scraper.datatype.marshalling.*;
 import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 import ch.sbi.scraper.mapper.BoardMapper;
 import ch.sbi.scraper.mapper.ThreadMapper;
 
 import javax.xml.bind.JAXBException;
+import java.util.stream.Stream;
 
 /**
  * Created by sbi on 18.04.16.
@@ -24,15 +26,10 @@ public class TraverseExample {
 
         boardMapper
                 .getPages(14)
-                .limit(3)
+                .limit(1)
                 .flatMap(p -> p.getThreads().getThread().stream())
-                .map(t -> {
-                    try {
-                        return threadMapper.getThread(t.getId().intValue());
-                    } catch (JAXBException e) {
-                        return null;
-                    }
-                })
-                .forEach(t -> System.out.printf("%s marshalled: %b\n", t.getTitle(), t.getPosts() != null));
+                .map(t -> threadMapper.getThread(t.getId().intValue()))
+                .flatMap(t -> t.getPosts().getPost().stream())
+                .forEach(p -> System.out.printf("%s %s: %s\n", p.getInThread().getId(), p.getUser().getValue(), p.getMessage().getContent()));
     }
 }
