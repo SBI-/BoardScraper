@@ -88,7 +88,6 @@ public class Threads {
      * 
      */
     public List<Thread> getThread() {
-        System.out.println("called on " + this);
         if (thread == null) {
             thread = new ArrayList<Thread>();
         }

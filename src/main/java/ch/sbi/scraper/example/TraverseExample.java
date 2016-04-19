@@ -19,15 +19,19 @@ public class TraverseExample {
         BoardMapper boardMapper = new BoardMapper(sourceBuilder);
         ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
 
-        boardMapper
-                .getPages(14)
-                .limit(3)
-                .flatMap(p -> p.getThreads().getThread().stream())
-                .forEach(t -> printThread(t));
-
+//        boardMapper
+//                .getPages(14)
+//                .limit(3)
+//                .flatMap(p -> p.getThreads().getThread().stream())
+//                .forEach(t -> printThread(t));
+//
         boardMapper
                 .getPages(14)
                 .limit(1)
+                /*
+                This works, but will take forever on a large board
+                .parallel()
+                */
                 .flatMap(p -> p.getThreads().getThread().stream())
                 .map(t -> threadMapper.getThread(t.getId().intValue()))
                 .flatMap(t -> t.getPosts().getPost().stream())
@@ -37,6 +41,7 @@ public class TraverseExample {
                 .getPages(122)
                 .parallel()
                 .flatMap(p -> p.getThreads().getThread().stream())
+                .map(t -> threadMapper.getThread(t.getId().intValue()))
                 .forEach(t -> printThread(t));
     }
 
