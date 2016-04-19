@@ -75,7 +75,7 @@ public class Boards {
      */
     public List<Board> getBoard() {
         if (board == null) {
-            board = new ArrayList<Board>();
+            board = new ArrayList<>();
         }
         return this.board;
     }

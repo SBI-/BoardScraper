@@ -82,7 +82,7 @@ public class Posts {
      */
     public List<Post> getPost() {
         if (post == null) {
-            post = new ArrayList<Post>();
+            post = new ArrayList<>();
         }
         return this.post;
     }

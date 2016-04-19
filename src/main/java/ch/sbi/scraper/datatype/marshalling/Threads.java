@@ -89,7 +89,7 @@ public class Threads {
      */
     public List<Thread> getThread() {
         if (thread == null) {
-            thread = new ArrayList<Thread>();
+            thread = new ArrayList<>();
         }
         return this.thread;
     }

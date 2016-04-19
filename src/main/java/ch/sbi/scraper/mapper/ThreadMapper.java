@@ -1,6 +1,5 @@
 package ch.sbi.scraper.mapper;
 
-import ch.sbi.scraper.datatype.marshalling.*;
 import ch.sbi.scraper.datatype.marshalling.Thread;
 import ch.sbi.scraper.factory.MarshallerFactory;
 import ch.sbi.scraper.library.utility.SourceBuilder;
@@ -41,7 +40,7 @@ public class ThreadMapper {
         return IntStream
                 .range(1, estimateBound(id))
                 .mapToObj(i -> sourceBuilder.getThreadSource(id, i))
-                .map(s -> unmarshall(s))
+                .map(this::unmarshall)
                 .filter(t -> Integer.valueOf(t.getPosts().getCount()) > 0);
     }
 
@@ -61,6 +60,7 @@ public class ThreadMapper {
                     .getValue();
         } catch (JAXBException e) {
             e.printStackTrace();
+            // TODO: Look into making this return a dummy object as well.
             return null;
         }
     }

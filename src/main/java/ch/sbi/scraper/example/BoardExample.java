@@ -19,7 +19,7 @@ public class BoardExample {
         CategoryMapper categoryMapper = new CategoryMapper(sourceBuilder);
 
         Optional<Board> maybe = categoryMapper.getBoard(14);
-        maybe.ifPresent(b -> printInformation(b));
+        maybe.ifPresent(BoardExample::printInformation);
         Optional<Board> maybeNot = categoryMapper.getBoard(3457);
         System.out.println(maybeNot.isPresent());
     }

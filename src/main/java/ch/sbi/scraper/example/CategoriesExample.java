@@ -7,7 +7,6 @@ import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 
 import javax.xml.bind.JAXBException;
-import java.io.IOException;
 
 /**
  * Created by sbi on 12.04.16.

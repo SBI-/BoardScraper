@@ -34,6 +34,17 @@ public class BoardMapper {
         return getBoard(id, 1);
     }
 
+    /**
+     * Returns the Board corresponding to the passed id.
+     *
+     * If a board with the given id doesn't exist, an empty object is returned, because the server returns a valid
+     * xml file containing "<invalid-board/>". Client code currently has to check for this. TODO: Handle this in lib.
+     *
+     * @param id Board id
+     * @param page Page of board
+     * @return Unmarshalled board with the corresponding id
+     * @throws JAXBException If xml is invalid
+     */
     public Board getBoard(long id, long page) throws JAXBException {
         Source boardSource = sourceBuilder.getBoardSource(id, page);
         Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
@@ -54,7 +65,7 @@ public class BoardMapper {
         return IntStream
                 .range(1, estimateBound(id))
                 .mapToObj(i -> sourceBuilder.getBoardSource(id, i))
-                .map(s -> unmarshall(s))
+                .map(this::unmarshall)
                 .filter(b -> b.getThreads().getCount().intValue() > 0);
     }
 

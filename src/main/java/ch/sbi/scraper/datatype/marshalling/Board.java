@@ -435,7 +435,7 @@ public class Board {
          */
         public List<User> getUser() {
             if (user == null) {
-                user = new ArrayList<User>();
+                user = new ArrayList<>();
             }
             return this.user;
         }

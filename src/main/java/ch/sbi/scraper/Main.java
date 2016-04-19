@@ -1,6 +1,5 @@
 package ch.sbi.scraper;
 
-import ch.sbi.scraper.example.ThreadExample;
 import ch.sbi.scraper.example.TraverseExample;
 
 import javax.xml.bind.JAXBException;

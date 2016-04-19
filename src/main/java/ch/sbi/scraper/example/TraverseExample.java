@@ -7,8 +7,6 @@ import ch.sbi.scraper.mapper.BoardMapper;
 import ch.sbi.scraper.mapper.ThreadMapper;
 
 import javax.xml.bind.JAXBException;
-import java.io.PrintStream;
-import java.util.stream.Stream;
 
 /**
  * Created by sbi on 18.04.16.
@@ -35,14 +33,14 @@ public class TraverseExample {
                 .flatMap(p -> p.getThreads().getThread().stream())
                 .map(t -> threadMapper.getThread(t.getId().intValue()))
                 .flatMap(t -> t.getPosts().getPost().stream())
-                .forEach(p -> printPost(p));
+                .forEach(TraverseExample::printPost);
 
         boardMapper
                 .getPages(122)
                 .parallel()
                 .flatMap(p -> p.getThreads().getThread().stream())
                 .map(t -> threadMapper.getThread(t.getId().intValue()))
-                .forEach(t -> printThread(t));
+                .forEach(TraverseExample::printThread);
     }
 
     private static void printThread(ch.sbi.scraper.datatype.marshalling.Thread t) {
