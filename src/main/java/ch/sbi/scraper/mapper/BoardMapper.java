@@ -24,7 +24,8 @@ public class BoardMapper {
      * Returns the Board corresponding to the passed id.
      *
      * If a board with the given id doesn't exist, an empty object is returned, because the server returns a valid
-     * xml file containing "<invalid-board/>". Client code currently has to check for this. TODO: Handle this in lib.
+     * xml file containing {@code "<invalid-board/>".} Client code currently has to check for this.
+     * TODO: Handle this in lib.
      *
      * @param id Board id
      * @return Unmarshalled board with the corresponding id
@@ -38,7 +39,8 @@ public class BoardMapper {
      * Returns the Board corresponding to the passed id.
      *
      * If a board with the given id doesn't exist, an empty object is returned, because the server returns a valid
-     * xml file containing "<invalid-board/>". Client code currently has to check for this. TODO: Handle this in lib.
+     * xml file containing {@code "<invalid-board/>".} Client code currently has to check for this.
+     * TODO: Handle this in lib.
      *
      * @param id Board id
      * @param page Page of board
