@@ -17,7 +17,7 @@ import java.io.InputStream;
  */
 public class TestSourceBuilder implements SourceBuilder {
     private String boardFile = "/board/board_page_%d.xml";
-    private String threadFile = "/thread/thread_%d_page_%d.xml";
+    private String threadFile = "/thread/thread_%d_page%d.xml";
 
     @Override
     public Source getCategoriesSource() {
