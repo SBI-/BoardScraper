@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
 
-/**
- * Created by sbi on 25.04.16.
- */
 public class BoardMapperTest {
     private final BoardMapper mapper;
 

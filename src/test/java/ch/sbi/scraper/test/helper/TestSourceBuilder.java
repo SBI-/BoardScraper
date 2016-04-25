@@ -7,10 +7,17 @@ import javax.xml.transform.stream.StreamSource;
 import java.io.InputStream;
 
 /**
- * Created by sbi on 25.04.16.
+ * SourceBuilder for reading single xml files from disk.
+ *
+ * <p>
+ *     This is necessary for not loading data from the internet when executing tests, which makes it easier
+ *     to spot problems with the code vs. problems with networking. Still not an optimal solution, but
+ *     better than relying on networking.
+ * </p>
  */
 public class TestSourceBuilder implements SourceBuilder {
-    private String boardFile = "/board_page_%d.xml";
+    private String boardFile = "/board/board_page_%d.xml";
+    private String threadFile = "/thread/thread_%d_page_%d.xml";
 
     @Override
     public Source getCategoriesSource() {
@@ -33,11 +40,15 @@ public class TestSourceBuilder implements SourceBuilder {
 
     @Override
     public Source getThreadSource(long id) {
-        return null;
+        String file = String.format(threadFile, id, 1);
+        InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
+        return new StreamSource(resourceAsStream);
     }
 
     @Override
     public Source getThreadSource(long id, long page) {
-        return null;
+        String file = String.format(threadFile, id, page);
+        InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
+        return new StreamSource(resourceAsStream);
     }
 }
