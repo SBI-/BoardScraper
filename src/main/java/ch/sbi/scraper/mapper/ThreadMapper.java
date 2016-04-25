@@ -49,7 +49,8 @@ public class ThreadMapper {
         int step = Integer.valueOf(thread.getPosts().getCount());
         int count = thread.getNumberOfReplies().getValue().intValue();
 
-        // count / step will round down, so we need to add 1. As pages are 1 and not 0 indexed, we need to add another 1.
+        // count / step will round down, so we need to add 1, because we're looking for the upper bound.
+        // As pages are 1 and not 0 indexed, we need to add another 1.
         return (count / step) + 2;
     }
 
