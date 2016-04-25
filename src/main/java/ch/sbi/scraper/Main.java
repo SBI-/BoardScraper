@@ -26,8 +26,8 @@ public class Main {
     public static void main(String[] args) {
         try {
 //            ThreadExample.printInfo(args[0]);
-            ThreadExample.printPage(args[0]);
-//            ThreadExample.countPages(args[0]);
+//            ThreadExample.printPage(args[0]);
+            ThreadExample.countPages(args[0]);
 //            TraverseExample.traversePages(args[0]);
 //            ThreadExample.printThread(args[0]);
         } catch (JAXBException e) {
