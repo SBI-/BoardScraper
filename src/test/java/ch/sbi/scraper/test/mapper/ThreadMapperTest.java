@@ -22,15 +22,17 @@ public class ThreadMapperTest {
         assertNotNull(thread);
         assertNotNull(thread.getPosts());
         int firstPagePosts = Integer.valueOf(thread.getPosts().getCount());
-        assertTrue(firstPagePosts == 30);
+        assertEquals(firstPagePosts, 30);
         int postCount = thread.getNumberOfReplies().getValue().intValue();
-        assertTrue(postCount == 282);
+        assertEquals(postCount, 282);
     }
 
     @Test
     public void testGetThread_Id_Page() throws Exception {
         ch.sbi.scraper.datatype.marshalling.Thread thread = mapper.getThread(1, 7);
-        assertTrue(thread.getPosts().getPage().intValue() == 7);
+        assertNotNull(thread.getPosts());
+        assertEquals(thread.getPosts().getPage().intValue(), 7);
+        assertEquals(180, thread.getPosts().getOffset().intValue());
     }
 
     @Test
