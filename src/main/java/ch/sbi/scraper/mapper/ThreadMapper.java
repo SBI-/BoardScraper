@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * Created by sbi on 18.04.16.
+ * Class for fetching and mapping Thread XML files to their runtime representation.
  */
 public class ThreadMapper {
     private final SourceBuilder sourceBuilder;
@@ -20,10 +20,23 @@ public class ThreadMapper {
         this.sourceBuilder = sourceBuilder;
     }
 
+    /**
+     * Unmarshalls the first page of the thread with the given id.
+     *
+     * @param id Thread id
+     * @return Unmarshalled thread, or a dummy thread object containing no information.
+     */
     public Thread getThread(long id) {
         return getThread(id, 1);
     }
 
+    /**
+     * Unmarshalls the given page of the thread with the given id.
+     *
+     * @param id Thread id
+     * @param page Thread page
+     * @return Unmarshalled page, or a dummy thread object containing no information.
+     */
     public Thread getThread(long id, int page) {
         try {
             Source threadSource = sourceBuilder.getThreadSource(id, page);
@@ -36,6 +49,12 @@ public class ThreadMapper {
         }
     }
 
+    /**
+     * Returns a Stream of thread objects, each representing a page of the given Thread.
+     *
+     * @param id Thread for which to stream all pages
+     * @return Stream with all pages of the given thread
+     */
     public Stream<Thread> getPages(long id) {
         return IntStream
                 .range(1, estimateBound(id))
