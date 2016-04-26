@@ -4,9 +4,6 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-/**
- * Created by sbi on 11.04.16.
- */
 public class MarshallerFactory {
     private final String packageName;
     private final JAXBContext context;

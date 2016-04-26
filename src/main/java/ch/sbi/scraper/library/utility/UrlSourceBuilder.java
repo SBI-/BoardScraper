@@ -3,17 +3,12 @@ package ch.sbi.scraper.library.utility;
 import javax.xml.transform.Source;
 import javax.xml.transform.stream.StreamSource;
 
-/**
- * Created by sbi on 11.04.16.
- */
 public class UrlSourceBuilder implements SourceBuilder {
     private final String categories;
-    private final String base;
     private final String board;
     private final String thread;
 
     public UrlSourceBuilder(String base) {
-        this.base = base;
         this.categories = String.format("%s%s", base, "xml/boards.php");
         this.board = String.format("%s%s?BID=", base, "xml/board.php");
         this.thread = String.format("%s%s?TID=", base, "xml/thread.php");

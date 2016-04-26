@@ -8,9 +8,6 @@ import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 
 import javax.xml.bind.JAXBException;
 
-/**
- * Created by sbi on 12.04.16.
- */
 public class CategoriesExample {
     public static void printCategories(String baseUrl) throws JAXBException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);

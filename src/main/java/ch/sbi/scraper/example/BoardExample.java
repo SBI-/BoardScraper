@@ -10,9 +10,6 @@ import javax.xml.bind.JAXBException;
 import java.io.IOException;
 import java.util.Optional;
 
-/**
- * Created by sbi on 12.04.16.
- */
 public class BoardExample {
     public static void printBoardCategory(String baseUrl) throws JAXBException, IOException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);

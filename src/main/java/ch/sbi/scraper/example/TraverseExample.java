@@ -8,9 +8,6 @@ import ch.sbi.scraper.mapper.ThreadMapper;
 
 import javax.xml.bind.JAXBException;
 
-/**
- * Created by sbi on 18.04.16.
- */
 public class TraverseExample {
     public static void traversePages(String baseUrl) throws JAXBException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);

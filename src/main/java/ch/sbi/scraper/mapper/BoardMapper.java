@@ -11,7 +11,7 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * Class that maps a category xml to its runtime type.
+ * Class that maps a board xml to its runtime type.
  */
 public class BoardMapper {
     private final SourceBuilder sourceBuilder;
