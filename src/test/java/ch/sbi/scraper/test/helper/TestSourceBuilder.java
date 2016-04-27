@@ -16,12 +16,14 @@ import java.io.InputStream;
  * </p>
  */
 public class TestSourceBuilder implements SourceBuilder {
-    private String boardFile = "/board/board_page_%d.xml";
-    private String threadFile = "/thread/thread_%d_page%d.xml";
+    private final String boardFile = "/board/board_page_%d.xml";
+    private final String threadFile = "/thread/thread_%d_page%d.xml";
+    private final String categoriesFile = "/categories/boards.xml";
 
     @Override
     public Source getCategoriesSource() {
-        return null;
+        InputStream resourceAsStream = this.getClass().getResourceAsStream(categoriesFile);
+        return new StreamSource(resourceAsStream);
     }
 
     @Override
