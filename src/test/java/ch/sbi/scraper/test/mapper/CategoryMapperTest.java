@@ -1,11 +1,13 @@
 package ch.sbi.scraper.test.mapper;
 
+import ch.sbi.scraper.datatype.marshalling.Board;
 import ch.sbi.scraper.datatype.marshalling.Category;
 import ch.sbi.scraper.mapper.CategoryMapper;
 import ch.sbi.scraper.test.helper.TestSourceBuilder;
 import org.junit.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.*;
 
@@ -28,5 +30,7 @@ public class CategoryMapperTest {
 
     @Test
     public void getBoard() throws Exception {
+        Optional<Board> board = mapper.getBoard(14);
+        assertTrue(board.isPresent());
     }
 }
