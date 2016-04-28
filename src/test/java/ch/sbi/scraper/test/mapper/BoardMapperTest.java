@@ -19,7 +19,7 @@ public class BoardMapperTest {
 
     @Test
     public void getPage1() throws JAXBException {
-        Board board = mapper.getBoard(1);
+        Board board = mapper.getBoard(14);
         assertTrue(board.getId().intValue() == 14);
         assertTrue(board.getName().equalsIgnoreCase("public offtopic"));
         assertTrue(board.getThreads().getPage().intValue() == 1);
@@ -27,7 +27,7 @@ public class BoardMapperTest {
 
     @Test
     public void getPage3() throws Exception {
-        Board board = mapper.getBoard(1, 3);
+        Board board = mapper.getBoard(14, 3);
         assertTrue(board.getId().intValue() == 14);
         assertTrue(board.getName().equalsIgnoreCase("public offtopic"));
         assertTrue(board.getThreads().getPage().intValue() == 3);

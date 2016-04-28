@@ -16,7 +16,7 @@ import java.io.InputStream;
  * </p>
  */
 public class TestSourceBuilder implements SourceBuilder {
-    private final String boardFile = "/board/board_page_%d.xml";
+    private final String boardFile = "/board/board_%d_page_%d.xml";
     private final String threadFile = "/thread/thread_%d_page%d.xml";
     private final String categoriesFile = "/categories/boards.xml";
 
@@ -28,14 +28,14 @@ public class TestSourceBuilder implements SourceBuilder {
 
     @Override
     public Source getBoardSource(long id) {
-        String file = String.format(boardFile, id);
+        String file = String.format(boardFile, id, 1);
         InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
         return new StreamSource(resourceAsStream);
     }
 
     @Override
     public Source getBoardSource(long id, long page) {
-        String file = String.format(boardFile, page);
+        String file = String.format(boardFile, id, page);
         InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
         return new StreamSource(resourceAsStream);
     }
