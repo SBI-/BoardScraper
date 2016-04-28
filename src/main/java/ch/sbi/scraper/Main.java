@@ -15,6 +15,7 @@ public class Main {
 
     static {
         try {
+//            System.setProperty("src/main/resources/java.util.logging.config.file", "default.logging.properties");
             System.setProperty("src/main/resources/java.util.logging.config.file", "default.logging.properties");
             LogManager manager = LogManager.getLogManager();
             manager.readConfiguration();
@@ -25,6 +26,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
+            logger.info("still not working?");
 //            ThreadExample.printInfo(args[0]);
 //            ThreadExample.printPage(args[0]);
             ThreadExample.countPages(args[0]);
