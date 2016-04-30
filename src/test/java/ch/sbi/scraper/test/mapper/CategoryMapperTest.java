@@ -32,5 +32,7 @@ public class CategoryMapperTest {
     public void getBoard() throws Exception {
         Optional<Board> board = mapper.getBoard(14);
         assertTrue(board.isPresent());
+        board = mapper.getBoard(1);
+        assertFalse(board.isPresent());
     }
 }
