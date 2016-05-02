@@ -76,6 +76,7 @@ public class BoardMapper {
         int step = board.getThreads().getCount().intValue();
         int count = board.getNumberOfThreads().getValue().intValue();
 
+        // one needs to be added because threads are 1 indexed.
         return (count / step) + 1;
     }
 
