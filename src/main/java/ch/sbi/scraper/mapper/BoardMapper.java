@@ -79,6 +79,7 @@ public class BoardMapper {
         return (count / step) + 2;
     }
 
+    // TODO: instead of using this function, getBoard should not throw an exception and optional instead.
     private Board unmarshall(Source source) {
         try {
             Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();

@@ -67,7 +67,7 @@ public final class CategoryMapper {
                     .findFirst();
     }
 
-    // TODO: This should actually be replaced by a call to the BoardMapper class, duplicated functionality.
+    // TODO: getBoard shouldn't throw an exception and instead should use optional types.
     private Board unmarshal(int id) {
         try {
             BoardMapper boardMapper = new BoardMapper(sourceBuilder);
