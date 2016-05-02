@@ -25,36 +25,36 @@ public class ThreadMapperTest {
         assertNotNull(thread);
         assertNotNull(thread.getPosts());
         int firstPagePosts = Integer.valueOf(thread.getPosts().getCount());
-        assertEquals(firstPagePosts, 30);
+        assertEquals(30, firstPagePosts);
         int postCount = thread.getNumberOfReplies().getValue().intValue();
-        assertEquals(postCount, 282);
+        assertEquals(282, postCount);
         int pageCount = thread.getNumberOfPages().getValue().intValue();
-        assertEquals(pageCount, 10);
+        assertEquals(10, pageCount);
     }
 
     @Test
     public void getThread_Id_Page() throws Exception {
         Thread thread = mapper.getThread(1, 7);
         assertNotNull(thread.getPosts());
-        assertEquals(thread.getPosts().getPage().intValue(), 7);
+        assertEquals(7, thread.getPosts().getPage().intValue());
         assertEquals(180, thread.getPosts().getOffset().intValue());
     }
 
     @Test
     public void getPages_Stream_All_Pages() throws Exception {
         Stream<Thread> pages = mapper.getPages(1);
-        assertEquals(pages.count(), 10);
+        assertEquals(10, pages.count());
     }
     
     @Test
     public void getPages_Stream_Same_Thread() throws Exception {
         Stream<Thread> pages = mapper.getPages(1);
-        pages.forEach(p -> assertEquals(p.getId().intValue(), 215183));
+        pages.forEach(p -> assertEquals(215183, p.getId().intValue()));
     }
 
     @Test
     public void getPages_Stream_No_Empty_Pages() throws Exception {
         Stream<Thread> pages = mapper.getPages(1);
-        pages.forEach(p -> assertNotEquals(p.getPosts().getCount(), "0"));
+        pages.forEach(p -> assertNotEquals("0", p.getPosts().getCount()));
     }
 }

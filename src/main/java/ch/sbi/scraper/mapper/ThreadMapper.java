@@ -56,19 +56,10 @@ public class ThreadMapper {
      * @return Stream with all pages of the given thread
      */
     public Stream<Thread> getPages(long id) {
+        Thread thread = getThread(id);
         return IntStream
-                .range(1, estimateBound(id))
+                .rangeClosed(1, thread.getNumberOfPages().getValue().intValue())
                 .mapToObj(i -> this.getThread(id, i))
                 .filter(t -> Integer.valueOf(t.getPosts().getCount()) > 0);
-    }
-
-    private int estimateBound(long id) {
-        Thread thread = getThread(id);
-        int step = Integer.valueOf(thread.getPosts().getCount());
-        int count = thread.getNumberOfReplies().getValue().intValue();
-
-        // count / step will round down, so we need to add 1, because we're looking for the upper bound.
-        // As pages are 1 and not 0 indexed, we need to add another 1.
-        return (count / step) + 2;
     }
 }
