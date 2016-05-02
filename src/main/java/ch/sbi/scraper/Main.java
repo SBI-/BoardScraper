@@ -1,11 +1,6 @@
 package ch.sbi.scraper;
 
-import ch.sbi.scraper.example.ThreadExample;
-import ch.sbi.scraper.example.TraverseExample;
-
-import javax.xml.bind.JAXBException;
 import java.io.IOException;
-import java.util.Properties;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
@@ -24,5 +19,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        logger.warning("this should now work");
     }
 }
