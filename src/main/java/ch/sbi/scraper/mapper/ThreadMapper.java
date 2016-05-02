@@ -58,8 +58,7 @@ public class ThreadMapper {
     public Stream<Thread> getPages(long id) {
         return IntStream
                 .range(1, estimateBound(id))
-                .mapToObj(i -> sourceBuilder.getThreadSource(id, i))
-                .map(this::unmarshall)
+                .mapToObj(i -> this.getThread(id, i))
                 .filter(t -> Integer.valueOf(t.getPosts().getCount()) > 0);
     }
 
@@ -71,17 +70,5 @@ public class ThreadMapper {
         // count / step will round down, so we need to add 1, because we're looking for the upper bound.
         // As pages are 1 and not 0 indexed, we need to add another 1.
         return (count / step) + 2;
-    }
-
-    private Thread unmarshall(Source source) {
-        try {
-            Unmarshaller unmarshaller = new MarshallerFactory(Thread.class).getUnmarshaller();
-            return unmarshaller
-                    .unmarshal(source, Thread.class)
-                    .getValue();
-        } catch (JAXBException e) {
-            // TODO: Look into making this return a dummy object as well.
-            return null;
-        }
     }
 }
