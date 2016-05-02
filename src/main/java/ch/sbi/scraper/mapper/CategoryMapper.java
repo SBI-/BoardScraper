@@ -70,12 +70,9 @@ public final class CategoryMapper {
     // TODO: This should actually be replaced by a call to the BoardMapper class, duplicated functionality.
     private Board unmarshal(int id) {
         try {
-            Unmarshaller unmarshaller = new MarshallerFactory(Board.class).getUnmarshaller();
-            return  unmarshaller
-                    .unmarshal(sourceBuilder.getBoardSource(id), Board.class)
-                    .getValue();
+            BoardMapper boardMapper = new BoardMapper(sourceBuilder);
+            return boardMapper.getBoard(id);
         } catch (JAXBException e) {
-            e.printStackTrace();
             return null;
         }
     }

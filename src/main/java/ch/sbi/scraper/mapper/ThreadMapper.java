@@ -80,7 +80,6 @@ public class ThreadMapper {
                     .unmarshal(source, Thread.class)
                     .getValue();
         } catch (JAXBException e) {
-            e.printStackTrace();
             // TODO: Look into making this return a dummy object as well.
             return null;
         }
