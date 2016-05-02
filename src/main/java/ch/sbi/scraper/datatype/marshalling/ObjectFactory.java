@@ -196,6 +196,10 @@ public class ObjectFactory {
         return new Thread.NumberOfHits();
     }
 
+    public Thread.NumberOfPages createThreadNumberOfPages() {
+        return new Thread.NumberOfPages();
+    }
+
     /**
      * Create an instance of {@link InBoard }
      * 

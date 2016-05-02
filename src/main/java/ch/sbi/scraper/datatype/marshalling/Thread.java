@@ -47,6 +47,14 @@ import javax.xml.bind.annotation.XmlType;
  *               &lt;/restriction>
  *             &lt;/complexContent>
  *           &lt;/complexType>
+ *         &lt;element name="number-of-pages">
+ *           &lt;complexType>
+ *             &lt;complexContent>
+ *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+ *                 &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
+ *               &lt;/restriction>
+ *             &lt;/complexContent>
+ *           &lt;/complexType>
  *         &lt;/element>
  *         &lt;element ref="{}flags"/>
  *         &lt;element ref="{}in-board"/>
@@ -86,6 +94,8 @@ public class Thread {
     protected Thread.NumberOfReplies numberOfReplies;
     @XmlElement(name = "number-of-hits", required = true)
     protected Thread.NumberOfHits numberOfHits;
+    @XmlElement(name = "number-of-pages", required = true)
+    protected Thread.NumberOfPages numberOfPages;
     @XmlElement(required = true)
     protected Flags flags;
     @XmlElement(name = "in-board", required = true)
@@ -191,6 +201,14 @@ public class Thread {
      */
     public void setNumberOfHits(Thread.NumberOfHits value) {
         this.numberOfHits = value;
+    }
+
+    public Thread.NumberOfPages getNumberOfPages() {
+        return numberOfPages;
+    }
+
+    public void setNumberOfPages(Thread.NumberOfPages value) {
+        this.numberOfPages = value;
     }
 
     /**
@@ -423,9 +441,9 @@ public class Thread {
 
     /**
      * <p>Java class for anonymous complex type.
-     * 
+     *
      * <p>The following schema fragment specifies the expected content contained within this class.
-     * 
+     *
      * <pre>
      * &lt;complexType>
      *   &lt;complexContent>
@@ -435,8 +453,8 @@ public class Thread {
      *   &lt;/complexContent>
      * &lt;/complexType>
      * </pre>
-     * 
-     * 
+     *
+     *
      */
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlType(name = "")
@@ -448,11 +466,11 @@ public class Thread {
 
         /**
          * Gets the value of the value property.
-         * 
+         *
          * @return
          *     possible object is
          *     {@link BigInteger }
-         *     
+         *
          */
         public BigInteger getValue() {
             return value;
@@ -460,11 +478,63 @@ public class Thread {
 
         /**
          * Sets the value of the value property.
-         * 
+         *
          * @param value
          *     allowed object is
          *     {@link BigInteger }
-         *     
+         *
+         */
+        public void setValue(BigInteger value) {
+            this.value = value;
+        }
+
+    }
+
+
+    /**
+     * <p>Java class for anonymous complex type.
+     *
+     * <p>The following schema fragment specifies the expected content contained within this class.
+     *
+     * <pre>
+     * &lt;complexType>
+     *   &lt;complexContent>
+     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+     *       &lt;attribute name="value" use="required" type="{http://www.w3.org/2001/XMLSchema}nonNegativeInteger" />
+     *     &lt;/restriction>
+     *   &lt;/complexContent>
+     * &lt;/complexType>
+     * </pre>
+     *
+     *
+     */
+    @XmlAccessorType(XmlAccessType.FIELD)
+    @XmlType(name = "")
+    public static class NumberOfPages {
+
+        @XmlAttribute(name = "value", required = true)
+        @XmlSchemaType(name = "nonNegativeInteger")
+        protected BigInteger value;
+
+        /**
+         * Gets the value of the value property.
+         *
+         * @return
+         *     possible object is
+         *     {@link BigInteger }
+         *
+         */
+        public BigInteger getValue() {
+            return value;
+        }
+
+        /**
+         * Sets the value of the value property.
+         *
+         * @param value
+         *     allowed object is
+         *     {@link BigInteger }
+         *
          */
         public void setValue(BigInteger value) {
             this.value = value;

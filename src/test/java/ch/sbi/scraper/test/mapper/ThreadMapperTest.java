@@ -28,6 +28,8 @@ public class ThreadMapperTest {
         assertEquals(firstPagePosts, 30);
         int postCount = thread.getNumberOfReplies().getValue().intValue();
         assertEquals(postCount, 282);
+        int pageCount = thread.getNumberOfPages().getValue().intValue();
+        assertEquals(pageCount, 10);
     }
 
     @Test
