@@ -65,7 +65,7 @@ public class BoardMapper {
      */
     public Stream<Board> getPages(long id) throws JAXBException {
         return IntStream
-                .range(1, estimateBound(id))
+                .rangeClosed(1, estimateBound(id))
                 .mapToObj(i -> sourceBuilder.getBoardSource(id, i))
                 .map(this::unmarshall)
                 .filter(b -> b.getThreads().getCount().intValue() > 0);
@@ -76,7 +76,7 @@ public class BoardMapper {
         int step = board.getThreads().getCount().intValue();
         int count = board.getNumberOfThreads().getValue().intValue();
 
-        return (count / step) + 2;
+        return (count / step) + 1;
     }
 
     // TODO: instead of using this function, getBoard should not throw an exception and optional instead.
