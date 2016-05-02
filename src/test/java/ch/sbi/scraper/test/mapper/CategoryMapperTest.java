@@ -22,7 +22,7 @@ public class CategoryMapperTest {
     @Test
     public void getCategories() throws Exception {
         List<Category> categories1 = mapper.getCategories();
-        assertEquals(categories1.size(), 10);
+        assertEquals(10, categories1.size());
         // a second call needs to be the same object, because of lazy loading.
         List<Category> categories2 = mapper.getCategories();
         assertSame(categories1, categories2);
