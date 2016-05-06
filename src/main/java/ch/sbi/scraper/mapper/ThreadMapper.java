@@ -59,7 +59,7 @@ public class ThreadMapper {
         Thread thread = getThread(id);
         return IntStream
                 .rangeClosed(1, thread.getNumberOfPages().getValue().intValue())
-                .mapToObj(i -> this.getThread(id, i))
+                .mapToObj(i -> getThread(id, i))
                 .filter(t -> Integer.valueOf(t.getPosts().getCount()) > 0);
     }
 }
