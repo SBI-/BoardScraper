@@ -4,8 +4,6 @@ import javax.xml.transform.Source;
 
 public interface SourceBuilder {
     Source getCategoriesSource();
-    Source getBoardSource(long id);
     Source getBoardSource(long id, long page);
-    Source getThreadSource(long id);
     Source getThreadSource(long id, long page);
 }

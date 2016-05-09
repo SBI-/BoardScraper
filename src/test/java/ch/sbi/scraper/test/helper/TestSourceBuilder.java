@@ -27,22 +27,8 @@ public class TestSourceBuilder implements SourceBuilder {
     }
 
     @Override
-    public Source getBoardSource(long id) {
-        String file = String.format(boardFile, id, 1);
-        InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
-        return new StreamSource(resourceAsStream);
-    }
-
-    @Override
     public Source getBoardSource(long id, long page) {
         String file = String.format(boardFile, id, page);
-        InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
-        return new StreamSource(resourceAsStream);
-    }
-
-    @Override
-    public Source getThreadSource(long id) {
-        String file = String.format(threadFile, id, 1);
         InputStream resourceAsStream = this.getClass().getResourceAsStream(file);
         return new StreamSource(resourceAsStream);
     }
