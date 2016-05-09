@@ -9,7 +9,7 @@ import ch.sbi.scraper.mapper.ThreadMapper;
 import javax.xml.bind.JAXBException;
 
 public class ThreadExample {
-    public static void printInfo(String baseUrl) throws JAXBException {
+    public static void printInfo(String baseUrl) {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
         Thread thread = threadMapper.getThread(214387);
@@ -17,14 +17,14 @@ public class ThreadExample {
 
     }
 
-    public static void printPage(String baseUrl) throws JAXBException {
+    public static void printPage(String baseUrl) {
         UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
         Thread thread = threadMapper.getThread(214387, 96);
         print(thread);
     }
 
-    public static void countPages(String baseUrl) throws JAXBException {
+    public static void countPages(String baseUrl) {
         UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
 
@@ -36,7 +36,7 @@ public class ThreadExample {
         System.out.println("Page count: " + count);
     }
 
-    public static void printThread(String baseUrl) throws JAXBException {
+    public static void printThread(String baseUrl) {
         UrlSourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         ThreadMapper threadMapper = new ThreadMapper(sourceBuilder);
 

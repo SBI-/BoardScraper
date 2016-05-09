@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class BoardExample {
-    public static void printBoardCategory(String baseUrl) throws JAXBException, IOException {
+    public static void printBoardCategory(String baseUrl) throws JAXBException {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
         CategoryMapper categoryMapper = new CategoryMapper(sourceBuilder);
 
