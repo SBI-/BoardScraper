@@ -57,7 +57,7 @@ public class BoardMapper {
      * Forms a stream for iterating over the pages of a board.
      *
      * The maximum page count is only an estimation, as the thread count includes threads that aren't visible anymore,
-     * so the maximum count calculated is definately an upper bound, but possibly not the absolutely correct value.
+     * so the maximum count calculated is definitely an upper bound, but possibly not the absolutely correct value.
      *
      * @param id Id of the board over which to iterate.
      * @return A stream of board objects.

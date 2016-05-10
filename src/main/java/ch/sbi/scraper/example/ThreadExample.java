@@ -6,8 +6,6 @@ import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.library.utility.UrlSourceBuilder;
 import ch.sbi.scraper.mapper.ThreadMapper;
 
-import javax.xml.bind.JAXBException;
-
 public class ThreadExample {
     public static void printInfo(String baseUrl) {
         SourceBuilder sourceBuilder = new UrlSourceBuilder(baseUrl);
