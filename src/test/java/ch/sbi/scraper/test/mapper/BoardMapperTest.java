@@ -2,7 +2,7 @@ package ch.sbi.scraper.test.mapper;
 
 import ch.sbi.scraper.datatype.marshalling.Board;
 import ch.sbi.scraper.mapper.BoardMapper;
-import ch.sbi.scraper.test.helper.TestSourceBuilder;
+import ch.sbi.scraper.test.helper.SourceBuilderMock;
 import org.junit.Test;
 
 import javax.xml.bind.JAXBException;
@@ -13,7 +13,7 @@ public class BoardMapperTest {
     private final BoardMapper mapper;
 
     public BoardMapperTest() {
-        TestSourceBuilder sourceBuilder = new TestSourceBuilder();
+        SourceBuilderMock sourceBuilder = new SourceBuilderMock();
         this.mapper = new BoardMapper(sourceBuilder);
     }
 

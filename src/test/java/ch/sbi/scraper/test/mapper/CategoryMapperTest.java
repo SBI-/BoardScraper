@@ -3,7 +3,7 @@ package ch.sbi.scraper.test.mapper;
 import ch.sbi.scraper.datatype.marshalling.Board;
 import ch.sbi.scraper.datatype.marshalling.Category;
 import ch.sbi.scraper.mapper.CategoryMapper;
-import ch.sbi.scraper.test.helper.TestSourceBuilder;
+import ch.sbi.scraper.test.helper.SourceBuilderMock;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,7 +15,7 @@ public class CategoryMapperTest {
     private final CategoryMapper mapper;
 
     public CategoryMapperTest() {
-        TestSourceBuilder testSourceBuilder = new TestSourceBuilder();
+        SourceBuilderMock testSourceBuilder = new SourceBuilderMock();
         this.mapper = new CategoryMapper(testSourceBuilder);
     }
 

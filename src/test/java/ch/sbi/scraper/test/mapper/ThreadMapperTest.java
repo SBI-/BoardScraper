@@ -1,10 +1,9 @@
 package ch.sbi.scraper.test.mapper;
 
-import ch.sbi.scraper.datatype.marshalling.*;
 import ch.sbi.scraper.datatype.marshalling.Thread;
 import ch.sbi.scraper.library.utility.SourceBuilder;
 import ch.sbi.scraper.mapper.ThreadMapper;
-import ch.sbi.scraper.test.helper.TestSourceBuilder;
+import ch.sbi.scraper.test.helper.SourceBuilderMock;
 import org.junit.Test;
 
 import java.util.stream.Stream;
@@ -15,7 +14,7 @@ public class ThreadMapperTest {
     private final ThreadMapper mapper;
 
     public ThreadMapperTest() {
-        SourceBuilder testSourceBuilder = new TestSourceBuilder();
+        SourceBuilder testSourceBuilder = new SourceBuilderMock();
         this.mapper = new ThreadMapper(testSourceBuilder);
     }
 
