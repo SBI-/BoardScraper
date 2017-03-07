@@ -10,7 +10,9 @@ deploy:
   provider: releases
   api_key:
     secure: LBiChESWSXl7cz9bpnvQmd1HUbYTvQcVWxI98jbn86FZ8KH6RsnLxmjw2ycQM0C4xlDi4w0FijqgOSnuNfEm6gQ3+oAj6wxAkT/Xk8gzbXZ11wvWma5Y7dVXfqMOClWCnCfiNkrqVfoCHfURYKyfhS0bKVdUv5/KX88LtfRb0TA72fJijec1EnNMBgYWrJ4P/R382Gjx7T4YkjlyZoExjFMUoMPkdubxki+oYanvEI0Y6OoATYkFFsoo8zMeNEY5o7frJ5Tkvp03moAtAmhwXxBOVIxCoBu7ck7A6oAiJyj1wPpfOHzvdRmVlL6sFvpIDWCuGWFFOzXzpJj5B8hB6pceI2mcNDKl9ejKL3vq0sH8MWSANMLOfBHyhMxnvbub7PWwm5DzjZFI6Y3AlzePF04arUJ/Ix6KrSYLXFzRra3YvA3B7MoTzQTFwuvS1iuTZUPDX3jw+6+78knOA0u6/DsH/CFUcAEzXmooigg0l850rRGAMfRG53tn8ijDT0p/u5i7AW0C5Yc9DscZZz5JAyk66I/BbiEF88VOQ7Wa1RZiBJEYLtfoDsCAAa0s0r1xKryGVCj1W7ew1IAQC+S+RkoLVXUn1qeUsuMnnVav67tgSGoiK3ICCGVv2uErPw8bXYij6cKxL07o/I13cHXmiPepEGTGRGp8sMtONG12rYI=
+  skip_cleanup: true
   file_glob: true
-  file: "$TRAVIS_BUILD_DIR/target/scraper*.jar"
+  file: target/scraper*.jar
   on:
+    tags: true
     repo: SBI-/BoardScraper

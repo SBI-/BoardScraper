@@ -15,7 +15,7 @@ import java.io.InputStream;
  *     better than relying on networking.
  * </p>
  */
-public class TestSourceBuilder implements SourceBuilder {
+public class SourceBuilderMock implements SourceBuilder {
     private final String boardFile = "/board/board_%d_page_%d.xml";
     private final String threadFile = "/thread/thread_%d_page%d.xml";
     private final String categoriesFile = "/categories/boards.xml";
