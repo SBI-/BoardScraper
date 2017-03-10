@@ -15,11 +15,11 @@ addons:
   coverity_scan:
     project:
       name: "SBI-/BoardScraper"
-      description: "Build submitted via Travis CI"
+      description: "Forum data scraper"
     notification_email: fischschwanz@hotmail.com
     build_command_prepend: "mvn clean"
     build_command: "mvn -DskipTests=true compile"
-    branch_pattern: master
+    branch_pattern: coverity_scan
   
 install: true
 notifications:
