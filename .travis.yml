@@ -1,6 +1,26 @@
 language: java
 jdk:
   - oraclejdk8
+  
+env:
+  global:
+   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
+   #   via the "travis encrypt" command using the project repo's public key
+   - secure: "HJXAK0BY4F44SiObmFbsftR9AJlc4ePNcZzUwGB9zshulw90W0aSVW7ryR/SKvYIZp1pDDowssEVVYkv9Yhd0bIGPjmDJTV+1mhSFgdfOZ1bkN46MjXL9h1GmXSWOoMG5T66h3NXAmxCUxEUvfPHjxI520nMFQzW58Xaz5JngyOvJsgryANEyGeBlRV5zfXdbZuCJhMZcdUx3tDmcomPhA/HVOCvPzSn12R2y+BiV7ggoXXgCmz2Z6UT4NNfodxVMyd5+LWztRXntmCFnkOG3CWDY7Bt3KDxeqvgUhbtJea1tVJwZ01fySk6Kks2kb4uYDD7gr87IyCsZtCTVmH9XMk0Q4WM4cNJGPjvS+v6st66m0ndXBP6MToJ+L3ex+giijRqVc8KmZaTH4o+04sBrYilGI8MAxQt5TOy1CnDCTKT02ApAtmTn+SfZRcsttmd4zcUfoQb4ENTaaW7Elwcw7DkJWfkEpmqbnUMTfh6EEv+pqBZV4ZUcYb3aYE2hRizWMOmSsUWN9ms2hRM6+9/gT01EuuIa6htCOgH9DHD1U9Jn69DAukit0nWgU1YG/8DRA//rrfQ3HJIVru/xT4TUbzxylF935m4BOTo7wZiorFSStr6xyj9p7bX3g6hkXpLYLGWVY8KOQFSe/clCMz//bvYiGSqMWmYeXEqOYk95BM="
+
+before_install:
+   - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
+
+addons:
+  coverity_scan:
+    project:
+      name: "SBI-/BoardScraper"
+      description: "Build submitted via Travis CI"
+    notification_email: fischschwanz@hotmail.com
+    build_command_prepend: "mvn clean"
+    build_command: "mvn -DskipTests=true compile"
+    branch_pattern: master
+  
 install: true
 notifications:
   email: 
@@ -17,20 +37,3 @@ deploy:
     tags: true
     repo: SBI-/BoardScraper
 
-env:
-  global:
-   # The next declaration is the encrypted COVERITY_SCAN_TOKEN, created
-   #   via the "travis encrypt" command using the project repo's public key
-   - secure: "HJXAK0BY4F44SiObmFbsftR9AJlc4ePNcZzUwGB9zshulw90W0aSVW7ryR/SKvYIZp1pDDowssEVVYkv9Yhd0bIGPjmDJTV+1mhSFgdfOZ1bkN46MjXL9h1GmXSWOoMG5T66h3NXAmxCUxEUvfPHjxI520nMFQzW58Xaz5JngyOvJsgryANEyGeBlRV5zfXdbZuCJhMZcdUx3tDmcomPhA/HVOCvPzSn12R2y+BiV7ggoXXgCmz2Z6UT4NNfodxVMyd5+LWztRXntmCFnkOG3CWDY7Bt3KDxeqvgUhbtJea1tVJwZ01fySk6Kks2kb4uYDD7gr87IyCsZtCTVmH9XMk0Q4WM4cNJGPjvS+v6st66m0ndXBP6MToJ+L3ex+giijRqVc8KmZaTH4o+04sBrYilGI8MAxQt5TOy1CnDCTKT02ApAtmTn+SfZRcsttmd4zcUfoQb4ENTaaW7Elwcw7DkJWfkEpmqbnUMTfh6EEv+pqBZV4ZUcYb3aYE2hRizWMOmSsUWN9ms2hRM6+9/gT01EuuIa6htCOgH9DHD1U9Jn69DAukit0nWgU1YG/8DRA//rrfQ3HJIVru/xT4TUbzxylF935m4BOTo7wZiorFSStr6xyj9p7bX3g6hkXpLYLGWVY8KOQFSe/clCMz//bvYiGSqMWmYeXEqOYk95BM="
-
-before_install:
-      - echo -n | openssl s_client -connect scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
-
-addons:
-  coverity_scan:
-    project:
-      name: "SBI-/BoardScraper"
-      description: "Build submitted via Travis CI"
-    build_command_prepend: "mvn clean"
-    build_command:   "mvn -DskipTests=true compile"
-    branch_pattern: master
