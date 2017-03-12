@@ -44,7 +44,7 @@ public class ThreadMapper {
             return unmarshaller.unmarshal(threadSource, Thread.class).getValue();
         } catch (JAXBException e) {
             // object creation failed, return a dummy object
-            // TODO: This should likely be what all mappers return.
+            // TODO: This should also use Optional
             return new Thread();
         }
     }

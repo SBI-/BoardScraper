@@ -28,7 +28,6 @@ public class ThreadExample {
 
         long count = threadMapper
                 .getPages(214387)
-                .parallel()
                 .count();
 
         System.out.println("Page count: " + count);
@@ -45,8 +44,9 @@ public class ThreadExample {
     }
 
     private static void printPost(Post post) {
-        System.out.printf("Author: %s%n Content: %s%n --- %n",
+        System.out.printf("Author: %s%n Title: %s%n Content: %s%n --- %n",
                 post.getUser().getValue(),
+                post.getMessage().getTitle(),
                 post.getMessage().getContent());
     }
 
